@@ -1,4 +1,4 @@
-package net.minecraft.src;
+Ôªøpackage net.minecraft.src;
 
 import java.util.List;
 
@@ -117,7 +117,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 				hwSize + 110 - fontRenderer.getStringWidth(s) / 2, hhSize + 2,
 				ColorInt_Alert);
 
-		// ÉTÉìÉvÉãï\é¶óp
+		// „Çµ„É≥„Éó„É´Ë°®Á§∫Áî®
 		GL11.glEnable(GL11.GL_BLEND);
 		s = "WARNING";
 		fontRenderer.drawString(s, hwSize - fontRenderer.getStringWidth(s) / 2,
@@ -129,7 +129,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 	}
 
 	public void renderRSHUD(Minecraft mc, int i, int j) {
-		// HUDÇÃï\é¶
+		// HUD„ÅÆË°®Á§∫
 		// if (!mod_RSHUD.HUDEnable) return;
 
 		double xcenter = i / 2D;
@@ -147,7 +147,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		double ldx;
 		double ldy;
 
-		// ï˚à 
+		// Êñπ‰Ωç
 		ldx = 0D - mcpl.rotationYaw % 10D;
 		int liy = (int) (mcpl.rotationYaw / 10F) * 2;
 		// System.out.println(String.format("%f", mcpl.rotationYaw));
@@ -165,7 +165,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			ldx += 5D;
 		}
 		tessellator.draw();
-		// ÉZÉìÉ^Å[É}Å[ÉJÅ[
+		// „Çª„É≥„Çø„Éº„Éû„Éº„Ç´„Éº
 		ldy = ycenter - 90D;
 		tessellator.startDrawing(GL11.GL_LINE_LOOP);
 		tessellator.addVertex(xcenter, ldy, 0.0D);
@@ -173,7 +173,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(xcenter - 2D, ldy + 3D, 0.0D);
 		tessellator.draw();
 
-		// ÉsÉbÉ`
+		// „Éî„ÉÉ„ÉÅ
 		ldx = xcenter;
 		ldy = ycenter - 105D - (mcpl.rotationPitch % 10D * 3D);
 		int lip = (int) (mcpl.rotationPitch / 10F) * 2;
@@ -220,7 +220,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(ldx + 15D, ycenter, 0.0D);
 		tessellator.draw();
 
-		// ë¨ìx
+		// ÈÄüÂ∫¶
 		double lvx = mcpl.lastTickPosX - mcpl.posX;
 		double lvy = mcpl.lastTickPosY - mcpl.posY;
 		double lvz = mcpl.lastTickPosZ - mcpl.posZ;
@@ -238,7 +238,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			ldy += 5D;
 		}
 		tessellator.draw();
-		// êîéöòg
+		// Êï∞Â≠óÊû†
 		tessellator.startDrawing(GL11.GL_LINE_LOOP);
 		ldx = xcenter - 160D;
 		;
@@ -249,7 +249,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(ldx, ldy + 11D, 0.0D);
 		tessellator.draw();
 
-		// çÇìx
+		// È´òÂ∫¶
 		tessellator.startDrawing(GL11.GL_LINES);
 		ldy = 0D + ((mc.thePlayer.posY * 10) % 10);
 		for (int li1 = 0; li1 < j / 5; li1++) {
@@ -263,7 +263,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			ldy += 5D;
 		}
 		tessellator.draw();
-		// êîéöòg
+		// Êï∞Â≠óÊû†
 		tessellator.startDrawing(GL11.GL_LINE_LOOP);
 		ldx = xcenter + 115D;
 		;
@@ -274,7 +274,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(ldx, ldy + 11D, 0.0D);
 		tessellator.draw();
 
-		// äZòg
+		// ÈéßÊû†
 		tessellator.startDrawing(GL11.GL_LINE_LOOP);
 		ldx = xcenter - 160D;
 		;
@@ -285,13 +285,13 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(ldx, ldy + 60D, 0.0D);
 		tessellator.draw();
 		/*
-		 * // ÉäÉXÉ|Å[ÉìÉ|ÉCÉìÉg ChunkCoordinates chunkcoordinates = null;
+		 * // „É™„Çπ„Éù„Éº„É≥„Éù„Ç§„É≥„Éà ChunkCoordinates chunkcoordinates = null;
 		 * ChunkCoordinates chunkcoordinates1 = null; boolean flag2 = true;
-		 * if(mcpl != null) { // ÉxÉbÉhÉäÉXÉ|Éì chunkcoordinates =
+		 * if(mcpl != null) { // „Éô„ÉÉ„Éâ„É™„Çπ„Éù„É≥ chunkcoordinates =
 		 * mcpl.getPlayerSpawnCoordinate(); if(chunkcoordinates != null) {
 		 * chunkcoordinates1 =
 		 * EntityPlayer.verifyRespawnCoordinates(mc.theWorld, chunkcoordinates);
-		 * } } if(chunkcoordinates1 == null) { // ÉèÅ[ÉãÉhÉäÉXÉ|Éì chunkcoordinates1 =
+		 * } } if(chunkcoordinates1 == null) { // „ÉØ„Éº„É´„Éâ„É™„Çπ„Éù„É≥ chunkcoordinates1 =
 		 * mc.theWorld.getSpawnPoint(); flag2 = false; } GL11.glPushMatrix();
 		 * GL11.glTranslated(xcenter, ycenter, 0D); //
 		 * GL11.glTranslated((double)chunkcoordinates1.posX,
@@ -314,13 +314,13 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		 * tessellator.addVertex(0D, -0.3D, 0.0D); tessellator.addVertex(-0.3D,
 		 * 0D, 0.0D); tessellator.draw(); GL11.glPopMatrix();
 		 */
-		// å„énññ
+		// ÂæåÂßãÊú´
 		GL11.glEnable(3553 /* GL_TEXTURE_2D */);
 
-		// ï∂éöÇÃï`âÊ
+		// ÊñáÂ≠ó„ÅÆÊèèÁîª
 		String s;
 		int txtcolor = ColorInt_Normal;
-		// ï˚à 
+		// Êñπ‰Ωç
 		int deg = (int) (mcpl.rotationYaw / 10F) * 2;
 		ldx = 0D - mcpl.rotationYaw % 10D;
 		for (int li1 = -i / 10; li1 < i / 10; li1++) {
@@ -337,7 +337,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			}
 			ldx += 5D;
 		}
-		// ë¨ìx
+		// ÈÄüÂ∫¶
 		ldy = 0D + (vmove * 10D % 10D);
 		for (int li1 = -j / 20; li1 < j / 20; li1++) {
 			int li2 = (int) (vmove) - li1;
@@ -355,7 +355,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		mc.fontRenderer.drawString(s,
 				(int) xcenter - 120 - mc.fontRenderer.getStringWidth(s),
 				j / 2 - 2, txtcolor);
-		// çÇìx
+		// È´òÂ∫¶
 		ldy = 0D + ((mc.thePlayer.posY * 10) % 10);
 		for (int li1 = -j / 20; li1 < j / 20; li1++) {
 			int li2 = (int) mc.thePlayer.posY - li1;
@@ -374,7 +374,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		mc.fontRenderer.drawString(s,
 				(int) xcenter + 155 - mc.fontRenderer.getStringWidth(s),
 				j / 2 - 2, txtcolor);
-		// ÉsÉbÉ`
+		// „Éî„ÉÉ„ÉÅ
 		ldx = xcenter;
 		ldy = (double) j / 2D - 105D - (mcpl.rotationPitch % 10D * 3D) - 3D;
 		for (int li1 = -7; li1 < 7; li1++) {
@@ -390,7 +390,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			ldy += 15D;
 		}
 
-		// èÛë‘ï\é¶
+		// Áä∂ÊÖãË°®Á§∫
 		txtcolor = ColorInt_Normal;
 		if (mcpl.health < 9) {
 			// HP Low
@@ -411,7 +411,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 
 		ItemStack is = mcpl.inventory.getCurrentItem();
 		if (is != null && is.isItemStackDamageable()) {
-			// è¡ñ’ïi
+			// Ê∂àËÄóÂìÅ
 			int cdamage = is.getMaxDamage() - is.getItemDamage();
 			if (((float) is.getItemDamage() / (float) is.getMaxDamage()) > 0.9F) {
 				txtcolor = ColorInt_Alert;
@@ -457,7 +457,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 					(int) ycenter + 54, txtcolor);
 		}
 
-		// äZ
+		// Èéß
 		int lx = (int) xcenter - 143;
 		int ly = j - 62;
 		float f;
@@ -499,7 +499,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 			drawRectL(lx, ly, lx + 5, ly + 7, txtcolor);
 		}
 
-		// å„énññ
+		// ÂæåÂßãÊú´
 		GL11.glDisable(3042 /* GL_BLEND */);
 
 	}

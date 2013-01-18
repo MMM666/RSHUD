@@ -1,4 +1,4 @@
-package net.minecraft.src;
+ï»¿package net.minecraft.src;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 			rshud = new GRV_GuiRSHUD_ACV(this);
 			GRH_Data.addHUD(rshud);
 			
-			// ‰Šú’l‚Ì“Ç‚İ‚İ
+			// åˆæœŸå€¤ã®èª­ã¿è¾¼ã¿
 			Color_Normal = "00000000".concat(Color_Normal);
 			Color_Normal = Color_Normal.substring(Color_Normal.length() - 8);
 			Color_Warning = "00000000".concat(Color_Warning);
@@ -83,7 +83,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 			if (itemIDRECON > 0) {
 				itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setIconCoord(14, 0).setItemName("recon");
 				ModLoader.addName(itemRECON, "RECON");
-//		        ModLoader.addName(itemRECON, "ja_JP", "’T¸‹@");
+//		        ModLoader.addName(itemRECON, "ja_JP", "æ¢æŸ»æ©Ÿ");
 				ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
 					"E", 
 					"R", 
@@ -128,8 +128,8 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public Entity spawnEntity(int var1, World var2, double var3, double var5, double var7) {
-		// Modloader‰º‚Å‚Í“Æ©‚É¶¬‚·‚é‚Ì‚Å—v‚ç‚È‚¢B
-		// ‚Æ‚¢‚¤‚©ModLoaderŠÂ‹«‚Å‚ÍID‚ª3000ˆÈã‚É‚È‚é‚Ì‚Å‚±‚±‚ÍŒÄ‚Î‚ê‚È‚¢B
+		// Modloaderä¸‹ã§ã¯ç‹¬è‡ªã«ç”Ÿæˆã™ã‚‹ã®ã§è¦ã‚‰ãªã„ã€‚
+		// ã¨ã„ã†ã‹ModLoaderç’°å¢ƒã§ã¯IDãŒ3000ä»¥ä¸Šã«ãªã‚‹ã®ã§ã“ã“ã¯å‘¼ã°ã‚Œãªã„ã€‚
 		if (!MMM_Helper.isForge) return null;
 		try {
 			Constructor<GRV_EntityRECON> lconstructor = classRECON.getConstructor(World.class);

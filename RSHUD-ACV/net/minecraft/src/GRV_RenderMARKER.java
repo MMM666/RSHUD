@@ -1,4 +1,4 @@
-package net.minecraft.src;
+ï»¿package net.minecraft.src;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -11,7 +11,7 @@ import org.lwjgl.util.glu.GLU;
 
 public class GRV_RenderMARKER extends Render {
 	
-	// •ÏŠ·s—ñ
+	// å¤‰æ›è¡Œåˆ—
 	public static FloatBuffer matModel = BufferUtils.createFloatBuffer(16);
 	public static FloatBuffer matProjection = BufferUtils.createFloatBuffer(16);
 	public static IntBuffer matViewport = BufferUtils.createIntBuffer(16);
@@ -31,7 +31,7 @@ public class GRV_RenderMARKER extends Render {
 		entity.markerPos[1] = null;
 		entity.markerPos[2] = null;
 		
-		// ‰æ–Êã‚ÌˆÊ’u‚ğ‹‚ß‚é
+		// ç”»é¢ä¸Šã®ä½ç½®ã‚’æ±‚ã‚ã‚‹
 		GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, matModel);
 		GL11.glGetFloat(GL11.GL_PROJECTION_MATRIX, matProjection);
 		GL11.glGetInteger(GL11.GL_VIEWPORT, matViewport);

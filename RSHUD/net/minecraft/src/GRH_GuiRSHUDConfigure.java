@@ -1,4 +1,4 @@
-package net.minecraft.src;
+ï»¿package net.minecraft.src;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -46,7 +46,7 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	
 	@Override
 	public void onGuiClosed() {
-		// ƒvƒƒpƒeƒB‚Ì•Û‘¶
+		// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ä¿å­˜
 		try {
 			GRH_Data.setupProperties(modbase);
 			if (modbase != mod_GRH_RSHUD.instance) {
@@ -102,26 +102,26 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	}
 	
 	public String getHUDName() {
-		// HUD‚Ì–¼‘O
+		// HUDã®åå‰
 		return "HUD OFF";
 	}
 	
 	public void renderRSHUD(Minecraft mc, int i, int j) {
-		// HUD‚Ì•`‰æ
+		// HUDã®æç”»
 	}
 
 	public void renderRSHUD(Minecraft mc, int i, int j, float f) {
-		// HUD‚Ì•`‰æ
+		// HUDã®æç”»
 		renderRSHUD(mc, i, j);
 	}
 
 	public boolean containsAmmo(ItemStack itemstack) {
-		// ’e–ò‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©
+		// å¼¾è–¬ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹
 		return itemstack != null && projectorList.containsKey(itemstack.getItem().itemID);
 	}
 	
 	public int countAmmo(ItemStack itemstack, EntityPlayer entityplayer) {
-		// ‘Î‰’e–ò‚ÌŠ”‚ğ•Ô‚·
+		// å¯¾å¿œå¼¾è–¬ã®æ‰€æŒæ•°ã‚’è¿”ã™
 		int count = 0;
 		List<Integer> clist = projectorList.get(itemstack.getItem().itemID);
 		for (int li1 = 0; li1 < entityplayer.inventory.mainInventory.length; li1++) {
@@ -179,7 +179,7 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	}
 	
 	
-	// c’eŠm”F—p
+	// æ®‹å¼¾ç¢ºèªç”¨
 	public int getCurrentEquipItemLoad() {
 		return 0;
 	}

@@ -1,4 +1,4 @@
-package net.minecraft.src;
+ï»¿package net.minecraft.src;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 
 	@Override
 	public void onGuiClosed() {
-		// İ’è’l‚ÌƒfƒR[ƒh
+		// è¨­å®šå€¤ã®ãƒ‡ã‚³ãƒ¼ãƒ‰
 		GRH_GuiRSHUDConfigure.projectorList.clear();
 		for (int i = 0; i < ((GRH_ContainerRSHUD) inventorySlots).weaponList
 				.size(); i++) {
@@ -55,7 +55,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 					continue;
 				if (GRH_GuiRSHUDConfigure.projectorList.containsKey(list1
 						.get(0).getItem().itemID)) {
-					// ƒL[‚ª‚ ‚é
+					// ã‚­ãƒ¼ãŒã‚ã‚‹
 					GRH_GuiRSHUDConfigure.projectorList.get(
 							list1.get(0).getItem().itemID).addAll(list2);
 				} else {
@@ -90,7 +90,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 				InventoryPlayer inventoryplayer = mc.thePlayer.inventory;
 				ItemStack itemstack1 = inventoryplayer.getItemStack();
 				ItemStack itemstack4 = slot.getStack();
-				// “ñ‚Â‚Í“¯‚¶ID
+				// äºŒã¤ã¯åŒã˜ID
 				if (itemstack1 != null && itemstack4 != null
 						&& itemstack1.itemID == itemstack4.itemID) {
 					if (j == 0) {
@@ -130,7 +130,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 										.size()) + 9 + 36);
 			}
 		} else {
-			// SlotˆÈŠO‚È‚çÌ‚Ä‚é
+			// Slotä»¥å¤–ãªã‚‰æ¨ã¦ã‚‹
 			InventoryPlayer inventoryplayer1 = mc.thePlayer.inventory;
 			inventoryplayer1.setItemStack(null);
 		}

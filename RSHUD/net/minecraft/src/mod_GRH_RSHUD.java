@@ -1,4 +1,4 @@
-package net.minecraft.src;
+ï»¿package net.minecraft.src;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,9 +35,9 @@ public class mod_GRH_RSHUD extends BaseMod {
 	public static String projectionArms = "261:262;";
 	@MLProp(info="Replace GuiIngame.")
 	public static boolean replaceGuiIngame = false;
-	@MLProp(info="GUI Enable(dont't use GUI is false)")		// GUI‚Ì—LŒø–³Œø
+	@MLProp(info="GUI Enable(dont't use GUI is false)")		// GUIã®æœ‰åŠ¹ç„¡åŠ¹
 	public static boolean guiEnable = true;
-	@MLProp(info="Default HUD")								// HUD‚Ì•\¦
+	@MLProp(info="Default HUD")								// HUDã®è¡¨ç¤º
 	public static String HUDName = "TypeA";
 
 	
@@ -58,13 +58,13 @@ public class mod_GRH_RSHUD extends BaseMod {
 
 	@Override
 	public String getPriorities() {
-		// Å‰‚É“Ç‚İ‚Ü‚ê‚Ü‚·‚æ‚¤‚É
+		// æœ€åˆã«èª­ã¿è¾¼ã¾ã‚Œã¾ã™ã‚ˆã†ã«
 		return "after:mod_MMM_MMMLib";
 	}
 	
 	@Override
 	public void load() {
-		// ƒQ[ƒ€‹N“®Œã‚Ìİ’è—pƒtƒbƒN
+		// ã‚²ãƒ¼ãƒ èµ·å‹•å¾Œã®è¨­å®šç”¨ãƒ•ãƒƒã‚¯
 		if (replaceGuiIngame) {
 			ModLoader.setInGUIHook(this, true, false);
 		} else {
@@ -72,7 +72,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 		}
 		instance = this;
 		
-		// GUI ‚ğŠJ‚­ƒL[‚Ì“o˜^‚Æ–¼Ì•ÏŠ·ƒe[ƒuƒ‹‚Ì“o˜^
+		// GUI ã‚’é–‹ãã‚­ãƒ¼ã®ç™»éŒ²ã¨åç§°å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç™»éŒ²
 		if (guiEnable) {
 			String s = "key.RSHUD";
 			guiKey = new KeyBinding(s, 25);
@@ -83,13 +83,13 @@ public class mod_GRH_RSHUD extends BaseMod {
 					);
 		}
 		
-		// HUD‚Ì“o˜^
+		// HUDã®ç™»éŒ²
 		GRH_Data.initTypeA();
 	}
 
 	@Override
 	public void modsLoaded() {
-		// “ŠË‘ÌƒŠƒXƒg‚Ì‰ğÍ
+		// æŠ•å°„ä½“ãƒªã‚¹ãƒˆã®è§£æ
 		String[] w1 = projectionArms.split(";");
 		for (int i = 0; i < w1.length; i++) {
 			String[] w2 = w1[i].split(":");
@@ -105,7 +105,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 	
 	@Override
 	public void keyboardEvent(KeyBinding keybinding) {
-		// GUI‚ğŠJ‚­
+		// GUIã‚’é–‹ã
 		Minecraft mcGame = ModLoader.getMinecraftInstance();
 //    	if (ModLoader.isGUIOpen(null)) {
 		if (mcGame.theWorld != null && mcGame.currentScreen == null) {
@@ -116,7 +116,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 	@Override
 	public boolean onTickInGUI(float f, Minecraft minecraft, GuiScreen guiscreen) {
 		GRH_Data.replaceInGameGui(minecraft);
-		// ˆê‰ñ‚Å‚¢‚¢
+		// ä¸€å›ã§ã„ã„
 		return false;
 	}
 
