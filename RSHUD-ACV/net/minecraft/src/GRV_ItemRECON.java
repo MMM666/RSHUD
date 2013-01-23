@@ -1,4 +1,4 @@
-﻿package net.minecraft.src;
+package net.minecraft.src;
 
 import java.lang.reflect.Constructor;
 
@@ -14,7 +14,7 @@ public class GRV_ItemRECON extends ItemSnowball {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-		// RECON射出
+		// RECON�ˏo
 		if (!par3EntityPlayer.capabilities.isCreativeMode) {
 			par1ItemStack.stackSize--;
 		}

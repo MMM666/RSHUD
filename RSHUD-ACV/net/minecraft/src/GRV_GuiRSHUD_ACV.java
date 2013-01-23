@@ -1,4 +1,4 @@
-ï»¿package net.minecraft.src;
+package net.minecraft.src;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 
 	private int lastDamageDealt;
     
-    // ãƒãƒ¼ã‚«ãƒ¼é–¢é€£
+    // ƒ}[ƒJ[ŠÖ˜A
     public boolean isRouteView;
     private int counterCheckWay;
     protected List<double[]> wayPoints;
@@ -197,7 +197,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 		s = "MARKER";
 		drawString(fontRenderer, s, hwSize + 110 - fontRenderer.getStringWidth(s) / 2, hhSize - 110, ColorInt_Maker);
 
-		// ã‚µãƒ³ãƒ—ãƒ«è¡¨ç¤ºç”¨
+		// ƒTƒ“ƒvƒ‹•\¦—p
 		GL11.glEnable(GL11.GL_BLEND);
 		s = "MARKER";
 		fontRenderer.drawString(s, hwSize - fontRenderer.getStringWidth(s) / 2, hhSize - 75, ColorInt_Maker);
@@ -226,7 +226,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 
 		
 		// Route
-        // ãƒ«ãƒ¼ãƒˆã®åˆ¤å®š
+        // ƒ‹[ƒg‚Ì”»’è
 		if (entityRoute == null || entityRoute.isDead || entityRoute.worldObj != mc.theWorld) {
 			entityRoute = new GRV_EntityMARKER(mc.theWorld);
 			setStartRoute(mcpl);
@@ -238,7 +238,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             checkReRoute(mc.theWorld, mcpl);
 		}
 
-		// åˆæœŸè¨­å®š
+		// ‰Šúİ’è
         Tessellator tessellator = Tessellator.instance;
 		centerX = i / 2D;
 		centerY = j / 2D;
@@ -346,11 +346,11 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         float valEN = ((float)mcpl.foodStats.getFoodLevel() + mcpl.foodStats.getSaturationLevel() - (valFoodExh / 4F)) / 40F;
         valEN = Math.max(valEN, 0F);
         int colEN = getTextColor(valEN, 0.4F, 0.1F);
-        // å€¤
+        // ’l
         GL11.glLineWidth(1F);
         setGLTextColor(colEN, 0.5F);
         drawMeter(tessellator, r0 + 2.5D, r0 + 5.0D, 88F, 0F, valEN);
-		// æ ç·š
+		// ˜gü
         r1 = r0 + 2.0D;
         GL11.glLineWidth(1.5F);
         setGLTextColor(ColorInt_Normal, 1.0F);
@@ -376,11 +376,11 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         // AP
         float valAP = Math.min((float)mcpl.health + (float)valFoodTimer / 80F, (float)mcpl.getMaxHealth()) / (float)mcpl.getMaxHealth();
         int colAP = getTextColor(valAP, 0.4F, 0.2F);
-		// å€¤
+		// ’l
         GL11.glLineWidth(1F);
         setGLTextColor(colAP, 0.5F);
         drawMeter(tessellator, r0 + 2.5D, r0 + 5.0D, 92F, 180F, valAP);
-        // æ ç·š
+        // ˜gü
         r1 = r0 + 2.0D;
         GL11.glLineWidth(1.5F);
         setGLTextColor(ColorInt_Normal, 1.0F);
@@ -410,11 +410,11 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         int colWep = 0;
         if (itemstack != null) {
             if (itemstack.isItemStackDamageable()) {
-        		// è€ä¹…
+        		// ‘Ï‹v
             	valWep1 = itemstack.getMaxDamage() - itemstack.getItemDamage();
             	valWep2 = (float)valWep1 / (float)itemstack.getMaxDamage();
             } else  {
-        		// æ®‹ã‚Š
+        		// c‚è
             	valWep1 = itemstack.stackSize;
             	valWep2 = (float)valWep1 / (float)itemstack.getMaxStackSize();
             }
@@ -425,7 +425,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         }
         int valAmmo = -1;
         int colAmmo = 0;
-        // å¼¾è–¬
+        // ’e–ò
         if (containsAmmo(itemstack)) {
             valAmmo = countAmmo(itemstack, mcpl);
             float maxammo = (float)itemstack.getMaxDamage();
@@ -434,7 +434,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             colAmmo = getTextColor(maxammo, 0.3F, 0.1F);
             setGLTextColor(colAmmo, 0.5F);
             drawMeter(tessellator, r0 + 2D, r0 + 3D, 272, 360 - d1, Math.min(1.0F, maxammo));
-            // æ ç·š
+            // ˜gü
             r1 = r0 + 1.0D;
             setGLTextColor(ColorInt_Normal, 0.8F);
             tessellator.startDrawing(GL11.GL_LINE_STRIP);
@@ -469,7 +469,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         drawMeter(tessellator, r0 - 3D, r0, 88, d1, valSpeed / 1000F);
         // HEIGHT
 //        float valHeight = (float)(mcpl.posY / (double)mc.theWorld.worldMaxY);
-        // TODO:worldå´ã«å€¤ãŒã‚ã‚‹ã®ã­ã€‚
+        // TODO:world‘¤‚É’l‚ª‚ ‚é‚Ì‚ËB
         float valHeight = (float)(mcpl.posY / mc.theWorld.getHeight());
         int colHeight = ColorInt_Normal; 
         if (valHeight > 1.0F || valHeight < 0.0F) {
@@ -528,10 +528,10 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         tessellator.draw();
         GL11.glPopMatrix();
 
-        // å†ç¾
+        // ÄŒ»
         
         GL11.glLineWidth(1.0F);
-		// å¤–å‘¨
+		// ŠOü
         GL11.glColor4f(1.0F, 1.0F, 1.0F, lf[3] * 0.6F);
         r1 = r0;
         tessellator.startDrawing(GL11.GL_LINE_STRIP);
@@ -551,7 +551,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 		}
         tessellator.draw();
 
-        // æ
+        // }
         r2 = r1 - 3D;
         tessellator.startDrawing(GL11.GL_LINES);
 		deg = d1 / 57.29578F;
@@ -584,7 +584,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 		tessellator.addVertex(centerX - ldx, centerY - ldy + 8D, 0D);
         tessellator.draw();
         
-        // å†…å‘¨
+        // “àü
         tessellator.startDrawing(GL11.GL_LINE_STRIP);
 		ldx = centerX + MathHelper.cos(deg2) * r2;
 		ldy = centerY + MathHelper.sin(deg2) * r2;
@@ -657,12 +657,12 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         	for (int li = 0; li < 3 && entityRoute.routePos[li] != null && entityRoute.markerPos[li] != null; li++) {
             	float lfz = entityRoute.markerPos[li].get(2);
             	if (lfz >= 0.0F && lfz <= 1.0F) {
-            		// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ç¯„å›²å†…
+            		// ƒNƒŠƒbƒsƒ“ƒO”ÍˆÍ“à
             		flag[li] = true;
             		GL11.glPushMatrix();
             		GL11.glTranslatef(entityRoute.markerPos[li].get(0) / zoomx, j - entityRoute.markerPos[li].get(1) / zoomy, 0.0F);
 //            		GL11.glScalef(0.5F, 0.5F, 0.5F);
-                    // ãƒãƒ¼ã‚«ãƒ¼
+                    // ƒ}[ƒJ[
         			GL11.glLineWidth(1.5F);
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
             		tessellator.startDrawing(GL11.GL_LINE_LOOP);
@@ -687,7 +687,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
                 		tessellator.draw();
                 		drawOutline(tessellator, -8D, -8D, 8D, 8D, 1D);
             		}
-            		// è·é›¢
+            		// ‹——£
             		GL11.glEnable(GL11.GL_TEXTURE_2D);
                     GL11.glScalef(textSize, textSize, textSize);
                     double ld0 = entityRoute.routePos[li][0] - mcpl.posX;
@@ -702,7 +702,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             		GL11.glPopMatrix();
             	}
             }
-        	// çµŒè·¯
+        	// Œo˜H
         	GL11.glLineWidth(5.0F);
         	GL11.glDisable(GL11.GL_TEXTURE_2D);
 			setGLTextColor(ColorInt_Maker, 0.5F);
@@ -735,7 +735,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
         
         
         
-        // æ–‡å­—
+        // •¶š
         int txtcolor;
         String s;
         GL11.glPushMatrix();
@@ -874,7 +874,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             ldy = centerY + 25D;
             GL11.glEnable(GL11.GL_TEXTURE_2D);
             mc.fontRenderer.drawString(valMes, (int)ldx - widMes + 1, (int)ldy, getColorAmp(colMes, iblink ? 0.3F : 1.0F));
-            // æ 
+            // ˜g
             widMes += 1;
             GL11.glLineWidth(1.0F);
             setGLTextColor(ColorInt_Normal, iblink ? 0.3F : 1.0F);
@@ -925,7 +925,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             GL11.glPushMatrix();
             GL11.glScalef(0.5F, 0.5F, 0.5F);
 //            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-            // TODO:çŠ¶æ…‹åŠ¹æœ
+            // TODO:ó‘ÔŒø‰Ê
             for (Iterator iterator = mcpl.getActivePotionEffects().iterator(); iterator.hasNext();) {
                 PotionEffect potioneffect = (PotionEffect)iterator.next();
                 int lpid = potioneffect.getPotionID();
@@ -936,20 +936,20 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
                 GL11.glPushMatrix();
                 GL11.glTranslatef((40F / var5.getScaleFactor() + lx * (var6 / 8)) ,  var7 + (140F - lx * 80F) / var5.getScaleFactor() - (lpid >>> 2) * 50F, 0F);
 //                GL11.glTranslatef(var6 + 20F + lx * 30F,  + (float)mc.displayHeight - 80F - lx * 40F - (lpid >>> 2) * 50F, 0F);
-                // æ›¸ãæ–‡å­—
+                // ‘‚«•¶š
                 int lc = getColorAmp(potion.isBadEffect() ? ColorInt_Alert : ColorInt_Normal, 0.8F);
                 int widMes = mc.fontRenderer.getStringWidth(s) / 2;
                 mc.fontRenderer.drawString(s, 64 - widMes, 19, lc);
 //                s = Potion.getDurationString(potioneffect);
 //                mc.fontRenderer.drawString(s, 56, 6, lc);
                 
-                // æ 
+                // ˜g
                 int lk = mc.renderEngine.getTexture("/gui/rshud_acvstatus.png");
                 mc.renderEngine.bindTexture(lk);
                 drawTexturedModalRect(0, 0, 0, potion.isBadEffect() ? 0 : 48, 128, 45);
                 GL11.glPopMatrix();
             }
-            // ã‚¨ãƒ³ãƒãƒ£ãƒ³ãƒˆ
+            // ƒGƒ“ƒ`ƒƒƒ“ƒg
             if (itemstack != null && itemstack.hasTagCompound()) {
                 NBTTagList nbttaglist = itemstack.getEnchantmentTagList();
 
@@ -965,10 +965,10 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
                           	float ly = (float)(word0 >>> 3);
                           	GL11.glPushMatrix();
                           	GL11.glTranslatef((float)mc.displayWidth - 148F - ly * 16F, (float)mc.displayHeight - 80F - ly * 40F - lx * 50F, 0F);
-                          	// æ›¸ãæ–‡å­—
+                          	// ‘‚«•¶š
                           	int widMes = mc.fontRenderer.getStringWidth(s) / 2;
                           	mc.fontRenderer.drawString(s, 64 - widMes, 19, getColorAmp(ColorInt_Normal, 0.8F));
-                          	// æ 
+                          	// ˜g
                           	int lk = mc.renderEngine.getTexture("/gui/rshud_acvstatus.png");
                           	mc.renderEngine.bindTexture(lk);
                           	drawTexturedModalRect(0, 0, 0, 48, 128, 45);
@@ -980,7 +980,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
             GL11.glPopMatrix();
         }
         
-        // å¾Œå§‹æœ«
+        // Œãn––
         GL11.glDisable(GL11.GL_LINE_SMOOTH);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -1082,7 +1082,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	}
 	
 	public void toggleRouteView(EntityPlayer entityplayer) {
-		// ãƒ«ãƒ¼ãƒˆè¡¨ç¤ºã®åˆ‡ã‚Šæ›¿ãˆ
+		// ƒ‹[ƒg•\¦‚ÌØ‚è‘Ö‚¦
 		isRouteView = !isRouteView;
 		if (entityplayer != null) {
 			if (isRouteView) {
@@ -1097,7 +1097,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	}
 	
 	public void setStartRoute(EntityPlayer entityplayer) {
-		// ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã®è¨­å®š
+		// ƒXƒ^[ƒg’n“_‚Ìİ’è
 		System.out.println("start Route.");
 		lastWayPoint = new double[] {
 				entityplayer.posX, 
@@ -1121,14 +1121,14 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	}
 	
 	public boolean checkRoutePoint(World world, EntityPlayer entityplayer) {
-		// ãƒã‚§ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆã®è¿½åŠ åˆ¤å®š
+		// ƒ`ƒFƒbƒNƒ|ƒCƒ“ƒg‚Ì’Ç‰Á”»’è
 		boolean flag = false;
 		if (world == null || lastWayPoint == null) return false;
 		Vec3 vec1 = entityplayer.getPosition(1.0F);
 		vec1.yCoord -= entityplayer.yOffset - 0.7D;
 		MovingObjectPosition mo = world.rayTraceBlocks_do_do(Vec3.createVectorHelper(lastWayPoint[0], lastWayPoint[1], lastWayPoint[2]), vec1, false, true);
 		if (mo != null) {
-			// ãƒã‚¤ãƒ³ãƒˆã®è¿½åŠ 
+			// ƒ|ƒCƒ“ƒg‚Ì’Ç‰Á
 			wayPoints.add(nowWayPoint);
 			lastWayPoint = nowWayPoint;
     		System.out.println(String.format("Add Route(%d).", wayPoints.size()));
@@ -1147,7 +1147,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	}
 	
 	public void checkReRoute(World world, EntityPlayer entityplayer) {
-		// ãƒã‚§ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆã‹ã‚‰ã®å¯è¦–åˆ¤å®šã‚’è¡Œã†
+		// ƒ`ƒFƒbƒNƒ|ƒCƒ“ƒg‚©‚ç‚Ì‰Â‹”»’è‚ğs‚¤
 		if (wayPoints.size() <= 1) return;
 		if (counterCheckWay < 0) counterCheckWay = 0;
 		double[] ldd = wayPoints.get(counterCheckWay);
@@ -1156,12 +1156,12 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 			vec1.yCoord -= entityplayer.yOffset - 0.7D;
 			MovingObjectPosition mo = world.rayTraceBlocks_do_do(Vec3.createVectorHelper(ldd[0], ldd[1], ldd[2]), vec1, false, true);
 			if (mo == null) {
-				// è¦–ç·šãŒé€šã‚‹
-				// ä»¥é™ã®ãƒªã‚¹ãƒˆã‚’å‰Šé™¤
+				// ‹ü‚ª’Ê‚é
+				// ˆÈ~‚ÌƒŠƒXƒg‚ğíœ
 				while (wayPoints.size() > counterCheckWay + 1) {
 					wayPoints.remove(wayPoints.size() - 1);
 				}
-				// ãƒ«ãƒ¼ãƒˆã®å†è¨­å®š
+				// ƒ‹[ƒg‚ÌÄİ’è
 				entityRoute.routePos[0] = null;
 				entityRoute.routePos[1] = null;
 				entityRoute.routePos[2] = null;
@@ -1182,7 +1182,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	
 	
 	private void drawRECON(Tessellator tessellator, Minecraft lmc, GRV_EntityRECON pEntityRECON) {
-		// RECONã®ãƒãƒ¼ã‚«ãƒ¼
+		// RECON‚Ìƒ}[ƒJ[
 		if (entityRoute == null || !pEntityRECON.enable) return;
 			
 		FloatBuffer posMarker = BufferUtils.createFloatBuffer(3);
@@ -1194,7 +1194,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 				GRV_RenderMARKER.matModel, GRV_RenderMARKER.matProjection, GRV_RenderMARKER.matViewport, posMarker);
 
 		if (posMarker.get(2) >= 0.0F && posMarker.get(2) <= 1.0F) {
-			// ç”»é¢å†…ã«ãƒãƒ¼ã‚«ãƒ¼ãŒã‚ã‚‹
+			// ‰æ–Ê“à‚Éƒ}[ƒJ[‚ª‚ ‚é
 			int lcolor = ColorInt_Maker;
 			if (pEntityRECON.getCountEnemy() > 0) {
 				lcolor = ColorInt_Alert;
@@ -1221,7 +1221,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 			lstr = String.format("RECON %3d", pEntityRECON.index + 1);
 			lmc.fontRenderer.drawString(lstr, lw, (int)(ly -lmc.fontRenderer.FONT_HEIGHT * 3), lcolor);
 		} else {
-			// ãƒãƒ¼ã‚«ãƒ¼ã¯ç”»é¢å¤–
+			// ƒ}[ƒJ[‚Í‰æ–ÊŠO
 			
 		}
 		GL11.glPopMatrix();
@@ -1229,7 +1229,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 
 	
 	private int getTextColor(float percent, float levelwarning, float levelalart) {
-		// å‰²åˆã«å¿œã˜ã¦è‰²ã‚’è¿”ã™
+		// Š„‡‚É‰‚¶‚ÄF‚ğ•Ô‚·
 		if (levelalart >= percent) {
 			return ColorInt_Alert;
 		}
@@ -1246,20 +1246,20 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 	}
 	
 	private void setGLTextColor(int textColor, float alphaRate) {
-		// è‰²ã‚’è¨­å®šã™ã‚‹
+		// F‚ğİ’è‚·‚é
 		float[] colf = getRGBA(textColor);
 		GL11.glColor4f(colf[0],	colf[1], colf[2], colf[3] * alphaRate);
 	}
 	
 	public static void addRECONSensing(Entity pentity) {
-		// RECONã§æ¤œå‡ºã—ãŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è¿½åŠ 
+		// RECON‚ÅŒŸo‚µ‚½ƒ^[ƒQƒbƒg‚ğ’Ç‰Á
 		if (!viewRECONEntitys.contains(pentity)) {
 			viewRECONEntitys.add(pentity);
 		}
 	}
 	
 	public static void clearRECONSensing() {
-		// RECONã§æ¤œå‡ºã—ãŸã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æ¶ˆå»
+		// RECON‚ÅŒŸo‚µ‚½ƒ^[ƒQƒbƒg‚ğÁ‹
 		if (!isRECONUpdate) {
 			viewRECONEntitys.clear();
 		}

@@ -1,4 +1,4 @@
-ï»¿package net.minecraft.src;
+package net.minecraft.src;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,7 +56,7 @@ public class GRH_ContainerRSHUD extends ContainerCreative {
 	}
 
 	private void initAllSelections() {
-		// ã‚³ãƒ³ãƒ†ãƒŠè¡¨ç¤ºç”¨ã‚¢ã‚¤ãƒ†ãƒ ã®è¨­å®š
+		// ƒRƒ“ƒeƒi•\¦—pƒAƒCƒeƒ€‚Ìİ’è
 		this.itemList.clear();
 		Item[] var2 = Item.itemsList;
 		int var3 = var2.length;
@@ -99,7 +99,7 @@ public class GRH_ContainerRSHUD extends ContainerCreative {
 	@Override
 	public ItemStack slotClick(int i, int j, int flag, EntityPlayer entityplayer) {
 		if (i >= 40) {
-			// ã‚»ãƒƒãƒˆã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’å®šç¾©
+			// ƒZƒbƒg‚³‚ê‚½ƒAƒCƒeƒ€‚ğ’è‹`
 			int lk = (i - 40) / 7 + weaponOffset;
 			for (; weaponList.size() <= lk;) {
 				weaponList.add(new ArrayList<ItemStack>());

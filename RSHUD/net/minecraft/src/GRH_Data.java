@@ -1,4 +1,4 @@
-ï»¿package net.minecraft.src;
+package net.minecraft.src;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +29,7 @@ public class GRH_Data {
         {
 //    	System.out.println("write property.");
     	mod_GRH_RSHUD.HUDName = selectHUD.getHUDName();
-    	// ModLoaderã‹ã‚‰ä¸¸ãƒ‘ã‚¯ãƒª
+    	// ModLoader‚©‚çŠÛƒpƒNƒŠ
     		Logger logger = ModLoader.getLogger();
     		Class class1 = basemod.getClass();
             Properties properties = new Properties();
@@ -102,7 +102,7 @@ public class GRH_Data {
 		GRH_Data.addHUD(new GRH_GuiRSHUDConfigure(mod_GRH_RSHUD.instance));
 		GRH_Data.addHUD(rshud = new GRH_GuiRSHUD_TypeA(mod_GRH_RSHUD.instance));
 
-		// è‰²ã®ç”Ÿæˆã€æ™®é€šã«ã‚„ã‚‹ã¨32Bitã®å¤‰æ›ãŒã§ããªã„ã®ã§å°ç´°å·¥
+		// F‚Ì¶¬A•’Ê‚É‚â‚é‚Æ32Bit‚Ì•ÏŠ·‚ª‚Å‚«‚È‚¢‚Ì‚Å¬×H
 		mod_GRH_RSHUD.Color_Normal = "00000000".concat(mod_GRH_RSHUD.Color_Normal);
 		mod_GRH_RSHUD.Color_Normal = mod_GRH_RSHUD.Color_Normal.substring(mod_GRH_RSHUD.Color_Normal.length() - 8);
 		mod_GRH_RSHUD.Color_Warning = "00000000".concat(mod_GRH_RSHUD.Color_Warning);
@@ -118,7 +118,7 @@ public class GRH_Data {
     }
 
     public static void replaceInGameGui(Minecraft minecraft) {
-    	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
+    	// ƒAƒCƒeƒ€ƒŒƒ“ƒ_[‚ğƒI[ƒo[ƒ‰ƒCƒh
     	minecraft.ingameGUI = new GRH_GuiIngameRSHUD(minecraft);
     }
     

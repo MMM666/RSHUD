@@ -1,4 +1,4 @@
-﻿//V1.24
+//V1.24
 
 package net.minecraft.src;
 

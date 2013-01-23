@@ -1,4 +1,4 @@
-ï»¿package net.minecraft.src;
+package net.minecraft.src;
 
 import java.util.Iterator;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.transaction.xa.Xid;
 
 public class GRV_EntityRECON extends EntityThrowable {
 	
-	// TODO:ç¶™æ‰¿é–¢ä¿‚ãŒå¤‰ã‚ã£ãŸã‚‰ä¿®æ­£
+	// TODO:Œp³ŠÖŒW‚ª•Ï‚í‚Á‚½‚çC³
 	private int xTile;
 	private int yTile;
 	private int zTile;
@@ -41,10 +41,10 @@ public class GRV_EntityRECON extends EntityThrowable {
 	protected void entityInit() {
 		super.entityInit();
 		
-		// åˆæœŸåŒ–
+		// ‰Šú‰»
 		targetEntity = null;
 		enable = false;
-		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ï¼“ï¼ç§’
+		// ƒfƒtƒHƒ‹ƒg‚Å‚Í‚R‚O•b
 		batteryCount = 600;
 	}
 
@@ -88,7 +88,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 			targetEntity = movingobjectposition.entityHit;
 //			setDead();
 		} else {
-			// å£ã«å½“ãŸã£ãŸ
+			// •Ç‚É“–‚½‚Á‚½
 			xTile = movingobjectposition.blockX;
 			yTile = movingobjectposition.blockY;
 			zTile = movingobjectposition.blockZ;
@@ -107,7 +107,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 			setPrivates();
 		}
 		
-		// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ãƒ¬ãƒ™ãƒ«ã«å¿œã˜ã¦èµ·å‹•å€‹æ•°ã‚’æ±ºå®š
+		// ƒvƒŒ[ƒ„[‚ÌƒŒƒxƒ‹‚É‰‚¶‚Ä‹N“®ŒÂ”‚ğŒˆ’è
 		if (thrower instanceof EntityPlayer) {
 			int lwakeCount = ((EntityPlayer)thrower).experienceLevel / 10;
 			List llist = worldObj.getLoadedEntityList();
@@ -120,7 +120,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 					}
 				}
 			}
-			// èµ·å‹•
+			// ‹N“®
 			enable = true;
 			index = 0;
 			
@@ -133,7 +133,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 	public void onUpdate() {
 		getPrivates();
 		if (targetEntity != null) {
-			// ãã£ã¤ãè™«
+			// ‚­‚Á‚Â‚«’
 			xTile = (int)(posX - 0.5D);
 			yTile = (int)posY;
 			zTile = (int)(posZ - 0.5D);
@@ -142,7 +142,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 		setPrivates();
 		
 		if (targetEntity != null) {
-			// ãã£ã¤ãè™«
+			// ‚­‚Á‚Â‚«’
 			posX = targetEntity.posX;
 			posY = targetEntity.posY;
 			posZ = targetEntity.posZ;
@@ -152,13 +152,13 @@ public class GRV_EntityRECON extends EntityThrowable {
 		
 		if (enable) {
 			if (batteryCount-- < 0) {
-				// ãƒãƒƒãƒ†ãƒªãƒ¼åˆ‡ã‚Œ
+				// ƒoƒbƒeƒŠ[Ø‚ê
 				setDead();
 			}
 
-			// TODO: 1.3.1ã®ä¸å…·åˆå¯¾ç­–ã€ãƒ›ãƒ³ãƒˆã¯ï¼ãŒè¦ã‚‰ãªã„ã€ã‚€ã—ã‚é€†
+			// TODO: 1.3.1‚Ì•s‹ï‡‘ÎôAƒzƒ“ƒg‚ÍI‚ª—v‚ç‚È‚¢A‚Ş‚µ‚ë‹t
 			if (worldObj.isRemote) {
-				// æœ‰åŠ¹ç¯„å›²å†…ã®MOBã‚’å–å¾—
+				// —LŒø”ÍˆÍ“à‚ÌMOB‚ğæ“¾
 				countOther = 0;
 				countEnemy = 0;
 				List llist1 = worldObj.getEntitiesWithinAABB(EntityLiving.class, boundingBox.expand(8D, 8D, 8D));
