@@ -8,7 +8,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
 public class GuiRSHUD_TypeB extends GRH_GuiRSHUDConfigure {
-	private GRH_GuiRSHUDSlider colornumber[];
+	private MMM_GuiSlider colornumber[];
 	public int ColorInt_Number;
 	public int ColorInt_Iron;
 	public int ColorInt_Gold;
@@ -17,7 +17,7 @@ public class GuiRSHUD_TypeB extends GRH_GuiRSHUDConfigure {
 
 	public GuiRSHUD_TypeB(BaseMod basemod) {
 		super(basemod);
-		colornumber = new GRH_GuiRSHUDSlider[4];
+		colornumber = new MMM_GuiSlider[4];
 	}
 
 	public String getHUDName() {
@@ -29,48 +29,48 @@ public class GuiRSHUD_TypeB extends GRH_GuiRSHUDConfigure {
 	 */
 	public void initGui() {
 		super.initGui();
-		deg = (new GRH_GuiRSHUDSlider(50, hwSize + 60, (hhSize - 106) + 0,
+		deg = (new MMM_GuiSlider(50, hwSize + 60, (hhSize - 106) + 0,
 				"Deg+", (float) mod_RSHUD_TypeB.DegOffset / 36F, 36F, 0.0F))
 				.setStrFormat("%s : %.0f").setDisplayString();
-		controlList.add(deg);
-		linea = (new GRH_GuiRSHUDSlider(51, hwSize + 60, (hhSize - 106) + 24,
+		buttonList.add(deg);
+		linea = (new MMM_GuiSlider(51, hwSize + 60, (hhSize - 106) + 24,
 				"Line A", mod_RSHUD_TypeB.LineAlpha)).setDisplayString();
-		controlList.add(linea);
-		linew = (new GRH_GuiRSHUDSlider(52, hwSize + 60, (hhSize - 106) + 48,
+		buttonList.add(linea);
+		linew = (new MMM_GuiSlider(52, hwSize + 60, (hhSize - 106) + 48,
 				"LineWidth", (mod_RSHUD_TypeB.LineWidth - 0.5F) / 5F, 5F, 0.5F))
 				.setDisplayString();
-		controlList.add(linew);
+		buttonList.add(linew);
 		String as[] = { "\2474R", "\2472G", "\2471B", "A" };
 		float af[] = getRGBA(ColorInt_Normal);
 
 		for (int i = 0; i < 4; i++) {
-			colornormal[i] = (new GRH_GuiRSHUDSlider(10 + i, hwSize - 205,
+			colornormal[i] = (new MMM_GuiSlider(10 + i, hwSize - 205,
 					hhSize + 14 + 24 * i, as[i], af[i])).setDisplayString();
-			controlList.add(colornormal[i]);
+			buttonList.add(colornormal[i]);
 		}
 
 		af = getRGBA(ColorInt_Warning);
 
 		for (int j = 0; j < 4; j++) {
-			colorwarning[j] = (new GRH_GuiRSHUDSlider(20 + j, hwSize - 100,
+			colorwarning[j] = (new MMM_GuiSlider(20 + j, hwSize - 100,
 					hhSize + 14 + 24 * j, as[j], af[j])).setDisplayString();
-			controlList.add(colorwarning[j]);
+			buttonList.add(colorwarning[j]);
 		}
 
 		af = getRGBA(ColorInt_Alert);
 
 		for (int k = 0; k < 4; k++) {
-			coloralert[k] = (new GRH_GuiRSHUDSlider(30 + k, hwSize + 5, hhSize
+			coloralert[k] = (new MMM_GuiSlider(30 + k, hwSize + 5, hhSize
 					+ 14 + 24 * k, as[k], af[k])).setDisplayString();
-			controlList.add(coloralert[k]);
+			buttonList.add(coloralert[k]);
 		}
 
 		af = getRGBA(ColorInt_Number);
 
 		for (int l = 0; l < 4; l++) {
-			colornumber[l] = (new GRH_GuiRSHUDSlider(40 + l, hwSize + 110, hhSize
+			colornumber[l] = (new MMM_GuiSlider(40 + l, hwSize + 110, hhSize
 					+ 14 + 24 * l, as[l], af[l])).setDisplayString();
-			controlList.add(colornumber[l]);
+			buttonList.add(colornumber[l]);
 		}
 	}
 

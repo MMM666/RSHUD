@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.minecraft.client.Minecraft;
 
@@ -12,14 +13,15 @@ import org.lwjgl.opengl.GL11;
 public class GRH_GuiRSHUDConfigure extends GuiScreen {
 
 	public BaseMod modbase;
-	public static Map<Integer, List<Integer>> projectorList = new HashMap<Integer, List<Integer>>();
+//	public static Map<Integer, List<Integer>> projectorList = new HashMap<Integer, List<Integer>>();
+	public static Map<ItemStack, List<ItemStack>> projectorList = new HashMap<ItemStack, List<ItemStack>>();
 
-	protected GRH_GuiRSHUDSlider deg;
-	protected GRH_GuiRSHUDSlider linea;
-	protected GRH_GuiRSHUDSlider linew;
-	protected GRH_GuiRSHUDSlider[] colornormal = new GRH_GuiRSHUDSlider[4];
-	protected GRH_GuiRSHUDSlider[] colorwarning = new GRH_GuiRSHUDSlider[4];
-	protected GRH_GuiRSHUDSlider[] coloralert = new GRH_GuiRSHUDSlider[4];
+	protected MMM_GuiSlider deg;
+	protected MMM_GuiSlider linea;
+	protected MMM_GuiSlider linew;
+	protected MMM_GuiSlider[] colornormal = new MMM_GuiSlider[4];
+	protected MMM_GuiSlider[] colorwarning = new MMM_GuiSlider[4];
+	protected MMM_GuiSlider[] coloralert = new MMM_GuiSlider[4];
 	protected int hwSize;
 	protected int hhSize;
 
@@ -40,8 +42,8 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 		//
 		hwSize = width / 2;
 		hhSize = height / 2;
-		controlList.add(new GuiButton(100, hwSize - 160, hhSize -106 + 24, 100, 20, "Weapon Set"));
-		controlList.add(new GuiButton(200, hwSize - 160, hhSize -106 + 0, 100, 20, getHUDName()));
+		buttonList.add(new GuiButton(100, hwSize - 160, hhSize -106 + 24, 100, 20, "Weapon Set"));
+		buttonList.add(new GuiButton(200, hwSize - 160, hhSize -106 + 0, 100, 20, getHUDName()));
 	}
 	
 	@Override
@@ -59,16 +61,17 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 
 	@Override
 	protected void keyTyped(char c, int i) {
-		super.keyTyped(c, i);
 		if(i == 1 || i == mod_GRH_RSHUD.guiKey.keyCode) {
 //        	mc.displayGuiScreen(null);
+//			i = 1;
 		}
+		super.keyTyped(c, i);
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 100) {
-			mc.displayGuiScreen(new GRH_GuiContainerRSHUD(mc.thePlayer, this));
+			mc.displayGuiScreen(new GRH_GuiAmmoSelect(mc.thePlayer, this));
 		}
 		if (guibutton.id == 200) {
 			nextGui();
@@ -77,10 +80,10 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	
 	@Override
 	public void drawScreen(int i, int j, float f) {
-        if(!mod_GRH_RSHUD.replaceGuiIngame) {
-            renderRSHUD(mc, width, height);
-        }
-        drawDefaultBackground();
+		if(!mod_GRH_RSHUD.replaceGuiIngame) {
+			renderRSHUD(mc, width, height);
+		}
+		drawDefaultBackground();
 		super.drawScreen(i, j, f);
 	}
 	
@@ -117,17 +120,36 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 
 	public boolean containsAmmo(ItemStack itemstack) {
 		// íeñÚÇ™ìoò^Ç≥ÇÍÇƒÇ¢ÇÈÇ©
-		return itemstack != null && projectorList.containsKey(itemstack.getItem().itemID);
+		return itemstack != null && getContainProjector(itemstack) != null;
 	}
-	
+
 	public int countAmmo(ItemStack itemstack, EntityPlayer entityplayer) {
 		// ëŒâûíeñÚÇÃèäéùêîÇï‘Ç∑
 		int count = 0;
-		List<Integer> clist = projectorList.get(itemstack.getItem().itemID);
+		for (Entry<ItemStack, List<ItemStack>> le : projectorList.entrySet()) {
+			if (itemstack.isItemEqual(le.getKey())) {
+				// ê›íËÇ™Ç†ÇÈèÍçá
+				List<ItemStack> clist = le.getValue();
+				for (int li1 = 0; li1 < entityplayer.inventory.mainInventory.length; li1++) {
+					ItemStack itemstack2 = entityplayer.inventory.mainInventory[li1];
+					if (itemstack2 != null) {
+						for (ItemStack lis : clist) {
+							if (lis.isItemEqual(itemstack2)) {
+								count += itemstack2.stackSize;
+							}
+						}
+					}
+				}
+				return count;
+			}
+		}
+		// ÉXÉ^ÉbÉNÇ≈Ç´ÇÈÉAÉCÉeÉÄÇÃèÍçá
 		for (int li1 = 0; li1 < entityplayer.inventory.mainInventory.length; li1++) {
 			ItemStack itemstack2 = entityplayer.inventory.mainInventory[li1];
-			if (itemstack2 != null && clist.contains(itemstack2.getItem().itemID)) {
-				count += itemstack2.stackSize;
+			if (itemstack2 != null) {
+				if (itemstack.isItemEqual(itemstack2)) {
+					count += itemstack2.stackSize;
+				}
 			}
 		}
 		return count;
@@ -190,6 +212,33 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	
 	public int getCurrentEquipItemAmmmoCount() {
 		return 0;
+	}
+
+	/**
+	 * íeñÚê›íËÇ…ïêäÌÇÃìoò^Ç™Ç†ÇÈÇ©ÅH
+	 */
+	public static List<ItemStack> getContainProjector(ItemStack pProjector) {
+		for (Entry<ItemStack, List<ItemStack>> le : projectorList.entrySet()) {
+			if (pProjector.isItemEqual(le.getKey())) {
+				return le.getValue();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * íeñÚê›íËÇ…íeñÚÇÃìoò^Ç™Ç†ÇÈÇ©ÅH
+	 */
+	public static boolean isContainAmmo(ItemStack pProjector, ItemStack pAmmo) {
+		List<ItemStack> ll = getContainProjector(pProjector);
+		if (ll != null) {
+			for (ItemStack lis : ll) {
+				if (pAmmo.isItemEqual(lis)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

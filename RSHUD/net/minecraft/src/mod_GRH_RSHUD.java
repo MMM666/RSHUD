@@ -48,7 +48,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 	
 	@Override
 	public String getVersion() {
-		return "1.4.7-1";
+		return "1.5.1-1";
 	}
 
 	@Override
@@ -58,8 +58,8 @@ public class mod_GRH_RSHUD extends BaseMod {
 
 	@Override
 	public String getPriorities() {
-		// Å‰‚É“Ç‚Ýž‚Ü‚ê‚Ü‚·‚æ‚¤‚É
-		return "after:mod_MMM_MMMLib";
+		// •K{
+		return "required-after:mod_MMM_MMMLib";
 	}
 	
 	@Override
@@ -102,7 +102,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 			}
 		}
 	}
-	
+
 	@Override
 	public void keyboardEvent(KeyBinding keybinding) {
 		// GUI‚ðŠJ‚­
@@ -135,17 +135,21 @@ public class mod_GRH_RSHUD extends BaseMod {
 
 	private boolean setAmmoIndex(String weaponIndex, String[] ammoIndex) {
 		try {
-			int projectionWeapon = Integer.valueOf(weaponIndex);
+			String[] ls = weaponIndex.split("-");
+			int projectionWeaponIndex = Integer.valueOf(ls[0]);
+			int projectionWeaponDamage = ls.length > 1 ? Integer.valueOf(ls[1]) : 0;
 			
-			List<Integer> weaponAmmos = new ArrayList<Integer>();
+			List<ItemStack> weaponAmmos = new ArrayList<ItemStack>();
 			for (int j = 0; j < ammoIndex.length; j++) {
-				int k = Integer.valueOf(ammoIndex[j]);
-				weaponAmmos.add(k);
+				ls = ammoIndex[j].split("-");
+				int lindex = Integer.valueOf(ls[0]);
+				int ldamage = ls.length > 1 ? Integer.valueOf(ls[1]) : 0;
+				weaponAmmos.add(new ItemStack(lindex, 1, ldamage));
 			}
 			if (weaponAmmos.isEmpty()) {
 				return false;
 			}
-			GRH_GuiRSHUDConfigure.projectorList.put(projectionWeapon, weaponAmmos);
+			GRH_GuiRSHUDConfigure.projectorList.put(new ItemStack(projectionWeaponIndex, 1, projectionWeaponDamage), weaponAmmos);
 			return true;
 		}
 		catch (Exception e) {

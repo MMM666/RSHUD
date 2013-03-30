@@ -8,21 +8,21 @@ import java.util.Map.Entry;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-public class GRH_GuiContainerRSHUD extends GuiContainer {
+public class GRH_GuiAmmoSelect extends GuiContainer {
 
 	protected float scrolleWeaponset;
 	protected float scrolleContainer;
-	private static InventoryBasic inventory1 = new InventoryBasic("tmpsel", 40);
-	private static InventoryBasic inventory2 = new InventoryBasic("tmpwep", 35);
+	private static InventoryBasic inventory1 = new InventoryBasic("tmpsel", false, 40);
+	private static InventoryBasic inventory2 = new InventoryBasic("tmpwep", false, 35);
 	private int lastX;
 	private int lastY;
 	private boolean ismousePress;
 	private int isScrolled;
 	public GRH_GuiRSHUDConfigure owner;
 
-	public GRH_GuiContainerRSHUD(EntityPlayer entityplayer,
+	public GRH_GuiAmmoSelect(EntityPlayer entityplayer,
 			GRH_GuiRSHUDConfigure guirshudconfigure) {
-		super(new GRH_ContainerRSHUD(entityplayer));
+		super(new GRH_ContainerAmmoSelect(entityplayer));
 		ySize = 216;
 		owner = guirshudconfigure;
 		// entityplayer.craftingInventory = this.inventorySlots;
@@ -40,36 +40,41 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 	public void onGuiClosed() {
 		// 設定値のデコード
 		GRH_GuiRSHUDConfigure.projectorList.clear();
-		for (int i = 0; i < ((GRH_ContainerRSHUD) inventorySlots).weaponList
-				.size(); i++) {
-			List<ItemStack> list1 = ((GRH_ContainerRSHUD) inventorySlots).weaponList
-					.get(i);
-			if (list1.get(0) != null) {
-				List list2 = new ArrayList<Integer>();
+		for (int i = 0; i < ((GRH_ContainerAmmoSelect) inventorySlots).weaponList.size(); i++) {
+			List<ItemStack> list1 = ((GRH_ContainerAmmoSelect) inventorySlots).weaponList.get(i);
+			ItemStack lis1 = list1.get(0);
+			if (lis1 != null) {
+				List<ItemStack> list2 = new ArrayList<ItemStack>();
 				for (int j = 1; j < list1.size(); j++) {
 					if (list1.get(j) != null) {
-						list2.add(list1.get(j).getItem().itemID);
+						list2.add(list1.get(j));
 					}
 				}
 				if (list2.isEmpty())
 					continue;
-				if (GRH_GuiRSHUDConfigure.projectorList.containsKey(list1
-						.get(0).getItem().itemID)) {
+				List<ItemStack> ll = GRH_GuiRSHUDConfigure.getContainProjector(lis1);
+				if (ll != null) {
 					// キーがある
-					GRH_GuiRSHUDConfigure.projectorList.get(
-							list1.get(0).getItem().itemID).addAll(list2);
+					for (int li = 0; li < ll.size();) {
+						// 実在するアイテムを削除する
+						if (ll.get(li).getItem() != null) {
+							ll.remove(li);
+						} else {
+							li++;
+						}
+					}
+					ll.addAll(list2);
 				} else {
-					GRH_GuiRSHUDConfigure.projectorList.put(list1.get(0).getItem().itemID, list2);
+					GRH_GuiRSHUDConfigure.projectorList.put(list1.get(0), list2);
 				}
 			}
 		}
 		StringBuilder sb = new StringBuilder();
-		for (Entry<Integer, List<Integer>> me : GRH_GuiRSHUDConfigure.projectorList
-				.entrySet()) {
-			sb.append(me.getKey().toString()).append(":")
-					.append(me.getValue().get(0).toString());
+		for (Entry<ItemStack, List<ItemStack>> me : GRH_GuiRSHUDConfigure.projectorList.entrySet()) {
+			sb.append(me.getKey().itemID).append("-").append(me.getKey().getItemDamage()).append(":")
+					.append(me.getValue().get(0).itemID).append("-").append(me.getValue().get(0).getItemDamage());
 			for (int i = 1; i < me.getValue().size(); i++) {
-				sb.append(",").append(me.getValue().get(i).toString());
+				sb.append(",").append(me.getValue().get(0).itemID).append("-").append(me.getValue().get(0).getItemDamage());
 			}
 			sb.append(";");
 		}
@@ -96,8 +101,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 					if (j == 0) {
 						if (flag == 0) {
 							itemstack1.stackSize = itemstack1.getMaxStackSize();
-						} else if (itemstack1.stackSize < itemstack1
-								.getMaxStackSize()) {
+						} else if (itemstack1.stackSize < itemstack1.getMaxStackSize()) {
 							itemstack1.stackSize++;
 						}
 					} else if (itemstack1.stackSize <= 1) {
@@ -109,25 +113,18 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 					inventoryplayer.setItemStack(null);
 				} else if (itemstack4 == null) {
 					inventoryplayer.setItemStack(null);
-				} else if (itemstack1 == null
-						|| itemstack1.itemID != itemstack4.itemID) {
-					inventoryplayer.setItemStack(ItemStack
-							.copyItemStack(itemstack4));
+				} else if (itemstack1 == null || itemstack1.itemID != itemstack4.itemID) {
+					inventoryplayer.setItemStack(ItemStack.copyItemStack(itemstack4));
 					ItemStack itemstack2 = inventoryplayer.getItemStack();
 					if (flag == 0) {
 						itemstack2.stackSize = itemstack2.getMaxStackSize();
 					}
 				}
 			} else {
-				inventorySlots
-						.slotClick(slot.slotNumber, j, flag, mc.thePlayer);
-				ItemStack itemstack = inventorySlots.getSlot(slot.slotNumber)
-						.getStack();
-				mc.playerController
-						.sendSlotPacket(
-								itemstack,
-								(slot.slotNumber - inventorySlots.inventorySlots
-										.size()) + 9 + 36);
+				inventorySlots.slotClick(slot.slotNumber, j, flag, mc.thePlayer);
+				ItemStack itemstack = inventorySlots.getSlot(slot.slotNumber).getStack();
+//				mc.playerController.sendSlotPacket(itemstack,
+//								(slot.slotNumber - inventorySlots.inventorySlots.size()) + 9 + 36);
 			}
 		} else {
 			// Slot以外なら捨てる
@@ -148,7 +145,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 		int i = Mouse.getEventDWheel();
 		if (i != 0) {
 			if (lastY < height / 2) {
-				int j = (((GRH_ContainerRSHUD) inventorySlots).itemList.size() / 8 - 5) + 1;
+				int j = (((GRH_ContainerAmmoSelect) inventorySlots).itemList.size() / 8 - 5) + 1;
 				if (i > 0) {
 					i = 1;
 				}
@@ -162,10 +159,10 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 				if (scrolleContainer > 1.0F) {
 					scrolleContainer = 1.0F;
 				}
-				((GRH_ContainerRSHUD) inventorySlots)
+				((GRH_ContainerAmmoSelect) inventorySlots)
 						.scrollTo(scrolleContainer);
 			} else {
-				int j = (((GRH_ContainerRSHUD) inventorySlots).weaponList
+				int j = (((GRH_ContainerAmmoSelect) inventorySlots).weaponList
 						.size() - 5) + 1;
 				if (i > 0) {
 					i = 1;
@@ -180,7 +177,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 				if (scrolleWeaponset > 1.0F) {
 					scrolleWeaponset = 1.0F;
 				}
-				((GRH_ContainerRSHUD) inventorySlots)
+				((GRH_ContainerAmmoSelect) inventorySlots)
 						.setWeaponlist(scrolleWeaponset);
 			}
 		}
@@ -212,7 +209,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 			if (scrolleContainer > 1.0F) {
 				scrolleContainer = 1.0F;
 			}
-			((GRH_ContainerRSHUD) inventorySlots).scrollTo(scrolleContainer);
+			((GRH_ContainerAmmoSelect) inventorySlots).scrollTo(scrolleContainer);
 		}
 		j1 = l + 120;
 		l1 = j1 + 90;
@@ -228,7 +225,7 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 			if (scrolleWeaponset > 1.0F) {
 				scrolleWeaponset = 1.0F;
 			}
-			((GRH_ContainerRSHUD) inventorySlots)
+			((GRH_ContainerAmmoSelect) inventorySlots)
 					.setWeaponlist(scrolleWeaponset);
 		}
 		ismousePress = flag;
@@ -240,12 +237,11 @@ public class GRH_GuiContainerRSHUD extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		int k = mc.renderEngine.getTexture("/gui/rshudcontainer.png");
-		mc.renderEngine.bindTexture(k);
+		mc.renderEngine.bindTexture("/gui/rshudcontainer.png");
 		int l = guiLeft;
 		int i1 = guiTop;
 		drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
-
+		
 		int j1 = l + 155;
 		int k1 = i1 + 17;
 		int l1 = k1 + 88 + 2;

@@ -8,12 +8,12 @@ import org.lwjgl.opengl.GL11;
 
 public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 
-	private GRH_GuiRSHUDSlider deg;
-	private GRH_GuiRSHUDSlider linea;
-	private GRH_GuiRSHUDSlider linew;
-	private GRH_GuiRSHUDSlider[] colornormal = new GRH_GuiRSHUDSlider[4];
-	private GRH_GuiRSHUDSlider[] colorwarning = new GRH_GuiRSHUDSlider[4];
-	private GRH_GuiRSHUDSlider[] coloralert = new GRH_GuiRSHUDSlider[4];
+	private MMM_GuiSlider deg;
+	private MMM_GuiSlider linea;
+	private MMM_GuiSlider linew;
+	private MMM_GuiSlider[] colornormal = new MMM_GuiSlider[4];
+	private MMM_GuiSlider[] colorwarning = new MMM_GuiSlider[4];
+	private MMM_GuiSlider[] coloralert = new MMM_GuiSlider[4];
 
 	public GRH_GuiRSHUD_TypeA(BaseMod basemod) {
 		super(basemod);
@@ -30,17 +30,17 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		super.initGui();
 		// hwSize = width / 2;
 		// hhSize = height / 2;
-		deg = new GRH_GuiRSHUDSlider(50, hwSize + 60, hhSize - 106 + 0, "Deg+",
+		deg = new MMM_GuiSlider(50, hwSize + 60, hhSize - 106 + 0, "Deg+",
 				mod_GRH_RSHUD.DegOffset / 36F, 36F, 0.0F).setStrFormat(
 				"%s : %.0f").setDisplayString();
-		controlList.add(deg);
-		linea = new GRH_GuiRSHUDSlider(51, hwSize + 60, hhSize - 106 + 24,
+		buttonList.add(deg);
+		linea = new MMM_GuiSlider(51, hwSize + 60, hhSize - 106 + 24,
 				"Line A", mod_GRH_RSHUD.LineAlpha).setDisplayString();
-		controlList.add(linea);
-		linew = new GRH_GuiRSHUDSlider(52, hwSize + 60, hhSize - 106 + 48,
+		buttonList.add(linea);
+		linew = new MMM_GuiSlider(52, hwSize + 60, hhSize - 106 + 48,
 				"LineWidth", (mod_GRH_RSHUD.LineWidth - 0.5F) / 5F, 5F, 0.5F)
 				.setDisplayString();
-		controlList.add(linew);
+		buttonList.add(linew);
 		// controlList.add(new GuiButton(100, hwSize + 60, hhSize -106 + 72,
 		// 100, 20, "Weapon Set"));
 		// controlList.add(new GuiButton(200, hwSize - 160, hhSize -106 + 0,
@@ -50,23 +50,23 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		float f[];
 		f = getRGBA(ColorInt_Normal);
 		for (int i = 0; i < 4; i++) {
-			colornormal[i] = new GRH_GuiRSHUDSlider(10 + i, hwSize - 160,
+			colornormal[i] = new MMM_GuiSlider(10 + i, hwSize - 160,
 					hhSize + 14 + (24 * i), str[i], f[i]).setDisplayString();
-			controlList.add(colornormal[i]);
+			buttonList.add(colornormal[i]);
 		}
 
 		f = getRGBA(ColorInt_Warning);
 		for (int i = 0; i < 4; i++) {
-			colorwarning[i] = new GRH_GuiRSHUDSlider(20 + i, hwSize - 50,
+			colorwarning[i] = new MMM_GuiSlider(20 + i, hwSize - 50,
 					hhSize + 14 + (24 * i), str[i], f[i]).setDisplayString();
-			controlList.add(colorwarning[i]);
+			buttonList.add(colorwarning[i]);
 		}
 
 		f = getRGBA(ColorInt_Alert);
 		for (int i = 0; i < 4; i++) {
-			coloralert[i] = new GRH_GuiRSHUDSlider(30 + i, hwSize + 60, hhSize
+			coloralert[i] = new MMM_GuiSlider(30 + i, hwSize + 60, hhSize
 					+ 14 + (24 * i), str[i], f[i]).setDisplayString();
-			controlList.add(coloralert[i]);
+			buttonList.add(coloralert[i]);
 		}
 
 	}
@@ -429,21 +429,20 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 					(int) xcenter - mc.fontRenderer.getStringWidth(s) + 50,
 					(int) ycenter + 62, txtcolor);
 		}
-
+		
 		if (containsAmmo(is)) {
 			// AMMO
-			int cammo = 0;
-			List<Integer> clist = projectorList.get(is.getItem().itemID);
-			for (int li1 = 0; li1 < mcpl.inventory.mainInventory.length; li1++) {
-				is = mcpl.inventory.mainInventory[li1];
-				if (is != null && clist.contains(is.getItem().itemID)) {
-					cammo += is.stackSize;
+			int cammo = countAmmo(is, mcpl);
+			List<ItemStack> clist = getContainProjector(is);
+			s = "UNKNOWN";
+			for (ItemStack lis : clist) {
+				if (lis.getItem() != null) {
+					s = (new StringBuilder())
+							.append(clist.get(0).getDisplayName())
+							.append(" /").toString();
 				}
 			}
 			txtcolor = (cammo <= 10) ? ColorInt_Alert : ColorInt_Normal;
-			s = (new StringBuilder())
-					.append(Item.itemsList[clist.get(0)].getStatName())
-					.append(" /").toString();
 			mc.fontRenderer.drawString(s,
 					(int) xcenter - mc.fontRenderer.getStringWidth(s) + 15,
 					(int) ycenter + 54, txtcolor);

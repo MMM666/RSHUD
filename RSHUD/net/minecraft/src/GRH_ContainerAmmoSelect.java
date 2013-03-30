@@ -9,41 +9,41 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class GRH_ContainerRSHUD extends ContainerCreative {
+public class GRH_ContainerAmmoSelect extends ContainerCreative {
 
 	public List<List<ItemStack>> weaponList;
 	public int weaponOffset;
 
-	public GRH_ContainerRSHUD(EntityPlayer entityplayer) {
+	public GRH_ContainerAmmoSelect(EntityPlayer entityplayer) {
 		super(entityplayer);
 
 		inventorySlots.clear();
 		for (int l2 = 0; l2 < 5; l2++) {
 			for (int j3 = 0; j3 < 8; j3++) {
-				addSlotToContainer(new Slot(GRH_GuiContainerRSHUD.getInventory1(), j3 + l2 * 8, 8 + j3 * 18, 18 + l2 * 18));
+				addSlotToContainer(new Slot(GRH_GuiAmmoSelect.getInventory1(), j3 + l2 * 8, 8 + j3 * 18, 18 + l2 * 18));
 			}
 		}
 		
 		for (int l2 = 0; l2 < 5; l2++) {
-			addSlotToContainer(new Slot(GRH_GuiContainerRSHUD.getInventory2(), l2 * 7, 8, 121 + l2 * 18));
+			addSlotToContainer(new Slot(GRH_GuiAmmoSelect.getInventory2(), l2 * 7, 8, 121 + l2 * 18));
 			for (int j3 = 1; j3 < 7; j3++) {
-				addSlotToContainer(new Slot(GRH_GuiContainerRSHUD.getInventory2(), j3 + l2 * 7, 26 + j3 * 18, 121 + l2 * 18));
+				addSlotToContainer(new Slot(GRH_GuiAmmoSelect.getInventory2(), j3 + l2 * 7, 26 + j3 * 18, 121 + l2 * 18));
 			}
 
 		}
 
 		weaponList = new ArrayList<List<ItemStack>>();
-		for (Entry<Integer, List<Integer>> me : GRH_GuiRSHUDConfigure.projectorList.entrySet()) {
-			if (Item.itemsList[me.getKey()] == null)
+		for (Entry<ItemStack, List<ItemStack>> me : GRH_GuiRSHUDConfigure.projectorList.entrySet()) {
+			if (me.getKey().getItem() == null)
 				continue;
 			int ls = me.getValue().size();
 			for (; ls > 0;) {
 				List<ItemStack> ti = new ArrayList<ItemStack>();
-				ti.add(new ItemStack(Item.itemsList[me.getKey()]));
+				ti.add(me.getKey());
 				for (int i = 0; i < 6 && ls-- > 0; i++) {
-					if (Item.itemsList[me.getValue().get(i)] == null)
+					if (me.getValue().get(i).getItem() == null)
 						continue;
-					ti.add(new ItemStack(Item.itemsList[me.getValue().get(i)]));
+					ti.add(me.getValue().get(i));
 				}
 				weaponList.add(ti);
 			}
@@ -86,9 +86,9 @@ public class GRH_ContainerRSHUD extends ContainerCreative {
 			for (int l = 0; l < 8; l++) {
 				int i1 = l + (k + j) * 8;
 				if (i1 >= 0 && i1 < itemList.size()) {
-					GRH_GuiContainerRSHUD.getInventory1().setInventorySlotContents(l + k * 8, (ItemStack) itemList.get(i1));
+					GRH_GuiAmmoSelect.getInventory1().setInventorySlotContents(l + k * 8, (ItemStack) itemList.get(i1));
 				} else {
-					GRH_GuiContainerRSHUD.getInventory1().setInventorySlotContents(l + k * 8, null);
+					GRH_GuiAmmoSelect.getInventory1().setInventorySlotContents(l + k * 8, null);
 				}
 			}
 			
@@ -132,13 +132,23 @@ public class GRH_ContainerRSHUD extends ContainerCreative {
 			for (int l = 0; l < 7; l++) {
 				if (i1 >= 0 && i1 < weaponList.size()
 						&& l < weaponList.get(i1).size()) {
-					GRH_GuiContainerRSHUD.getInventory2()
+					GRH_GuiAmmoSelect.getInventory2()
 							.setInventorySlotContents(k * 7 + l, weaponList.get(i1).get(l));
 				} else {
-					GRH_GuiContainerRSHUD.getInventory2().setInventorySlotContents(k * 7 + l, null);
+					GRH_GuiAmmoSelect.getInventory2().setInventorySlotContents(k * 7 + l, null);
 				}
 			}
 		}
+	}
+
+	@Override
+	public boolean func_94530_a(ItemStack par1ItemStack, Slot par2Slot) {
+		return false;
+	}
+
+	@Override
+	public boolean func_94531_b(Slot par1Slot) {
+		return false;
 	}
 
 }

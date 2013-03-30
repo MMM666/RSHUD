@@ -36,7 +36,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.4.7-1";
+		return "1.5.1-1";
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 			
 			// RECON
 			if (itemIDRECON > 0) {
-				itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setIconCoord(14, 0).setItemName("recon");
+				itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon");
 				ModLoader.addName(itemRECON, "RECON");
 //		        ModLoader.addName(itemRECON, "ja_JP", "íTç∏ã@");
 				ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
@@ -92,8 +92,8 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 					Character.valueOf('I'), Item.ingotIron,
 					Character.valueOf('R'), Item.redstone
 				});
-				uniqueRECON = ModLoader.getUniqueEntityId();
-				classRECON = MMM_Helper.getEntityClass(this, "GRV_EntityRECON");
+				uniqueRECON = MMM_Helper.getNextEntityID(false);
+				classRECON = MMM_Helper.getForgeClass(this, "GRV_EntityRECON");
 				if (classRECON != null) {
 					ModLoader.registerEntityID(classRECON, "RECON", uniqueRECON);
 					ModLoader.addEntityTracker(this, classRECON, uniqueRECON, 80, 10, true);
@@ -123,7 +123,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 	@Override
 	public void addRenderer(Map map) {
 		map.put(GRV_EntityMARKER.class, new GRV_RenderMARKER());
-		map.put(GRV_EntityRECON.class, new RenderSnowball(Item.snowball.getIconFromDamage(0)));
+		map.put(GRV_EntityRECON.class, new RenderSnowball(itemRECON));
 	}
 
 	@Override
