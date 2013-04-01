@@ -448,7 +448,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 		int valAmmo = -1;
 		int colAmmo = 0;
 		// ’e–ò
-		if (containsAmmo(itemstack) || itemstack.isStackable()) {
+		if (itemstack != null && (containsAmmo(itemstack) || itemstack.isStackable())) {
 			valAmmo = countAmmo(itemstack, mcpl);
 			float maxammo = (float) itemstack.getMaxDamage();
 			List<ItemStack> ll = getContainProjector(itemstack);
