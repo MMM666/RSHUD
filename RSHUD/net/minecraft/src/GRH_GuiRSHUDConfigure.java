@@ -127,14 +127,14 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 		// ‘Î‰’e–ò‚ÌŠ”‚ğ•Ô‚·
 		int count = 0;
 		for (Entry<ItemStack, List<ItemStack>> le : projectorList.entrySet()) {
-			if (itemstack.isItemEqual(le.getKey())) {
+			if (isItemEqual(itemstack, le.getKey())) {
 				// İ’è‚ª‚ ‚éê‡
 				List<ItemStack> clist = le.getValue();
 				for (int li1 = 0; li1 < entityplayer.inventory.mainInventory.length; li1++) {
 					ItemStack itemstack2 = entityplayer.inventory.mainInventory[li1];
 					if (itemstack2 != null) {
 						for (ItemStack lis : clist) {
-							if (lis.isItemEqual(itemstack2)) {
+							if (isItemEqual(lis, itemstack2)) {
 								count += itemstack2.stackSize;
 							}
 						}
@@ -147,7 +147,7 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 		for (int li1 = 0; li1 < entityplayer.inventory.mainInventory.length; li1++) {
 			ItemStack itemstack2 = entityplayer.inventory.mainInventory[li1];
 			if (itemstack2 != null) {
-				if (itemstack.isItemEqual(itemstack2)) {
+				if (isItemEqual(itemstack, itemstack2)) {
 					count += itemstack2.stackSize;
 				}
 			}
@@ -219,11 +219,24 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 	 */
 	public static List<ItemStack> getContainProjector(ItemStack pProjector) {
 		for (Entry<ItemStack, List<ItemStack>> le : projectorList.entrySet()) {
-			if (pProjector.isItemEqual(le.getKey())) {
+			if (isItemEqual(pProjector, le.getKey())) {
 				return le.getValue();
 			}
 		}
 		return null;
+	}
+
+	public static boolean isItemEqual(ItemStack pItemStack1, ItemStack pItemStack2) {
+		if (pItemStack1.itemID == pItemStack2.itemID) {
+			if (pItemStack1.getHasSubtypes()) {
+				if (pItemStack1.getItemDamage() == pItemStack2.getItemDamage()) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -233,7 +246,7 @@ public class GRH_GuiRSHUDConfigure extends GuiScreen {
 		List<ItemStack> ll = getContainProjector(pProjector);
 		if (ll != null) {
 			for (ItemStack lis : ll) {
-				if (pAmmo.isItemEqual(lis)) {
+				if (isItemEqual(pAmmo, lis)) {
 					return true;
 				}
 			}
