@@ -25,9 +25,10 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 	public static int itemIDRECON = 22250;
 	@MLProp(info="Show Status Massage")
 	public static boolean Show_Status = true;
+	@MLProp
+	public static boolean isInternalServer = true;
 
 
-	public static GRV_GuiRSHUD_ACV rshud;
 	public static Item itemRECON;
 	public static int uniqueRECON;
 	public static Class classRECON;
@@ -36,7 +37,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.5.1-1";
+		return "1.5.1-2";
 	}
 
 	@Override
@@ -46,84 +47,45 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getPriorities() {
-		return "required-after:mod_GRH_RSHUD";
+		return MMM_Helper.isClient ? "required-after:mod_GRH_RSHUD" : "";
 	}
 
 	@Override
 	public void load() {
-		try {
-			rshud = new GRV_GuiRSHUD_ACV(this);
-			GRH_Data.addHUD(rshud);
-			
-			// èâä˙ílÇÃì«Ç›çûÇ›
-			Color_Normal = "00000000".concat(Color_Normal);
-			Color_Normal = Color_Normal.substring(Color_Normal.length() - 8);
-			Color_Warning = "00000000".concat(Color_Warning);
-			Color_Warning = Color_Warning.substring(Color_Warning.length() - 8);
-			Color_Alert = "00000000".concat(Color_Alert);
-			Color_Alert = Color_Alert.substring(Color_Alert.length() - 8);
-			Color_Marker = "00000000".concat(Color_Marker);
-			Color_Marker = Color_Marker.substring(Color_Marker.length() - 8);
-			rshud.ColorInt_Normal = Integer.parseInt(Color_Normal.substring(0, 4), 16) << 16 | Integer.parseInt(Color_Normal.substring(4, 8), 16);
-			rshud.ColorInt_Warning = Integer.parseInt(Color_Warning.substring(0, 4), 16) << 16 | Integer.parseInt(Color_Warning.substring(4, 8), 16);
-			rshud.ColorInt_Alert = Integer.parseInt(Color_Alert.substring(0, 4), 16) << 16 | Integer.parseInt(Color_Alert.substring(4, 8), 16);
-			rshud.ColorInt_Maker = Integer.parseInt(Color_Marker.substring(0, 4), 16) << 16 | Integer.parseInt(Color_Marker.substring(4, 8), 16);
-			rshud.lowGain = LowGain;
-			rshud.textSize = TextSize;
-			rshud.isStatus = Show_Status;
-			
-			String s = "key.RSHUD.ACV.Route";
-			ModLoader.registerKey(this, new KeyBinding(s, 49), false);
-			ModLoader.addLocalization(
-					(new StringBuilder()).append(s).toString(),
-					(new StringBuilder()).append("RouteView").toString()
-					);
-			
-			// RECON
-			if (itemIDRECON > 0) {
-				itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon");
-				ModLoader.addName(itemRECON, "RECON");
-//		        ModLoader.addName(itemRECON, "ja_JP", "íTç∏ã@");
-				ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
-					"E", 
-					"R", 
-					"I", 
-					Character.valueOf('E'), Item.spiderEye,
-					Character.valueOf('I'), Item.ingotIron,
-					Character.valueOf('R'), Item.redstone
-				});
-				uniqueRECON = MMM_Helper.getNextEntityID(false);
-				classRECON = MMM_Helper.getForgeClass(this, "GRV_EntityRECON");
-				if (classRECON != null) {
-					ModLoader.registerEntityID(classRECON, "RECON", uniqueRECON);
-					ModLoader.addEntityTracker(this, classRECON, uniqueRECON, 80, 10, true);
-				}
-			}
-			
+		if (MMM_Helper.isClient) {
+			GRV_Client.load(this);
 		}
-		catch (NoClassDefFoundError e) {
-			System.out.print("not Found RSHUD.");
+		
+		// RECON
+		if (itemIDRECON > 0) {
+			itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon");
+			ModLoader.addName(itemRECON, "RECON");
+//	        ModLoader.addName(itemRECON, "ja_JP", "íTç∏ã@");
+			ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
+				"E", 
+				"R", 
+				"I", 
+				Character.valueOf('E'), Item.spiderEye,
+				Character.valueOf('I'), Item.ingotIron,
+				Character.valueOf('R'), Item.redstone
+			});
+			uniqueRECON = MMM_Helper.getNextEntityID(false);
+			classRECON = MMM_Helper.getForgeClass(this, "GRV_EntityRECON");
+			if (classRECON != null) {
+				ModLoader.registerEntityID(classRECON, "RECON", uniqueRECON);
+				ModLoader.addEntityTracker(this, classRECON, uniqueRECON, 80, 10, true);
+			}
 		}
 	}
 
 	@Override
 	public void keyboardEvent(KeyBinding keybinding) {
-		Minecraft mcGame = ModLoader.getMinecraftInstance();
-		if (mcGame.theWorld != null && mcGame.currentScreen == null && GRH_Data.selectHUD == rshud) {
-			if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
-				rshud.setStartRoute(mcGame.thePlayer);
-				System.out.println("Route Reset.");
-			} else {
-				rshud.toggleRouteView(mcGame.thePlayer);
-				System.out.println("Route.");
-			}
-		}
+		GRV_Client.keyboardEvent(keybinding);
 	}
 
 	@Override
 	public void addRenderer(Map map) {
-		map.put(GRV_EntityMARKER.class, new GRV_RenderMARKER());
-		map.put(GRV_EntityRECON.class, new RenderSnowball(itemRECON));
+		GRV_Client.addRenderer(map);
 	}
 
 	@Override

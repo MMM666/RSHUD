@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.transaction.xa.Xid;
 
+import net.minecraft.server.MinecraftServer;
+
 public class GRV_EntityRECON extends EntityThrowable {
 	
 	// TODO:継承関係が変わったら修正
@@ -111,24 +113,23 @@ public class GRV_EntityRECON extends EntityThrowable {
 		if (thrower instanceof EntityPlayer) {
 			int lwakeCount = ((EntityPlayer)thrower).experienceLevel / 10;
 			List llist = worldObj.getLoadedEntityList();
-			for (int li = 0; li < llist.size(); li++) {
-				Entity lentity = (Entity)llist.get(li);
-				if (lentity instanceof GRV_EntityRECON) {
-					GRV_EntityRECON lrecon = (GRV_EntityRECON)lentity;
-					if (lrecon.enable && lrecon.index++ > lwakeCount) {
-						lrecon.setDead();
+			if (llist != null) {
+				for (int li = 0; li < llist.size(); li++) {
+					Entity lentity = (Entity)llist.get(li);
+					if (lentity instanceof GRV_EntityRECON) {
+						GRV_EntityRECON lrecon = (GRV_EntityRECON)lentity;
+						if (lrecon.enable && lrecon.index++ > lwakeCount) {
+							lrecon.setDead();
+						}
 					}
 				}
 			}
 			// 起動
 			enable = true;
 			index = 0;
-			
 		}
-		
 	}
 
-	
 	@Override
 	public void onUpdate() {
 		getPrivates();
@@ -155,9 +156,10 @@ public class GRV_EntityRECON extends EntityThrowable {
 				// バッテリー切れ
 				setDead();
 			}
-
+			
 			// TODO: 1.3.1の不具合対策、ホントは！が要らない、むしろ逆
 			if (worldObj.isRemote) {
+				// Client
 				// 有効範囲内のMOBを取得
 				countOther = 0;
 				countEnemy = 0;
@@ -168,6 +170,11 @@ public class GRV_EntityRECON extends EntityThrowable {
 						Entity lentity = (Entity)literator1.next();
 						if (lentity instanceof GRV_EntityRECON) continue;
 						if (lentity == thrower) continue;
+						if (mod_GRV_RSHUD_ACV.isInternalServer && MMM_Helper.mc.isIntegratedServerRunning()) {
+							// サーバーのEntity
+							WorldServer lws = MinecraftServer.getServer().worldServers[0];
+							lentity = lws.getEntityByID(lentity.entityId);
+						}
 						GRV_GuiRSHUD_ACV.addRECONSensing(lentity);
 						if (lentity instanceof IMob) {
 							countEnemy++;
@@ -189,7 +196,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 			}
 		}
 	}
-	
+
 	public boolean getPrivates() {
 		try {
 			xTile = (Integer)ModLoader.getPrivateValue(EntityThrowable.class, this, 0);
@@ -202,7 +209,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 			return false;
 		}
 	}
-	
+
 	public boolean setPrivates() {
 		try {
 			ModLoader.setPrivateValue(EntityThrowable.class, this, 0, xTile);
@@ -216,7 +223,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 			return false;
 		}
 	}
-	
+
 	public int getCountOther() {
 		return countOther > 99 ? 99 : countOther;
 	}

@@ -42,11 +42,11 @@ public class GRV_EntityMARKER extends Entity {
 				playerEntity.rotationYaw, playerEntity.rotationPitch);
 //		super.onUpdate();
 		if (!isDead) {
-			if (mod_GRV_RSHUD_ACV.rshud.entityRoute != this || mc.theWorld != worldObj) {
+			if (GRV_Client.rshud.entityRoute != this || mc.theWorld != worldObj) {
 				setDead();
 			}
-			else if (mod_GRV_RSHUD_ACV.rshud.entityRoute == null) {
-				mod_GRV_RSHUD_ACV.rshud.entityRoute = this;
+			else if (GRV_Client.rshud.entityRoute == null) {
+				GRV_Client.rshud.entityRoute = this;
 			}
 		}
 		
