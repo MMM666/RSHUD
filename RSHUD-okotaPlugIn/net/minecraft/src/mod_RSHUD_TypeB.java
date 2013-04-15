@@ -2,23 +2,36 @@ package net.minecraft.src;
 
 public class mod_RSHUD_TypeB extends BaseMod {
 
-	public static KeyBinding guiKey;
+	@MLProp(info="Line Color (AARRGGBB)")
 	public static String Color_Normal = "cc0030ff";
+	@MLProp(info="Warning Color(AARRGGBB)")
 	public static String Color_Warning = "e5ffff00";
+	@MLProp(info="Alert Color(AARRGGBB)")
 	public static String Color_Alert = "e5ff0000";
+	@MLProp(info="Number Color(AARRGGBB)")
 	public static String Color_Number = "cc0090ff";
+	
+	@MLProp(info="Iron Color (RRGGBB):Default 807050")
 	public static String Color_Iron = "807050";
+	@MLProp(info="Gold Color(RRGGBB):Default 999000")
 	public static String Color_Gold = "999000";
+	@MLProp(info="Diamond Color(RRGGBB):Default 009999")
 	public static String Color_Diamond = "009999";
+	@MLProp(info="Lava Color(RRGGBB):Default ff3000")
 	public static String Color_Lava = "ff3000";
+	
+	@MLProp(info="Line Alpha Value.", min=0.0F, max=1.0F)
 	public static float LineAlpha = 0.8F;
+	@MLProp(info="Line Width.", min=0.5F)
 	public static float LineWidth = 1.0F;
+	@MLProp(info="Degree Offset.", min=0, max=36)
 	public static int DegOffset = 18;
+
 
 
 	@Override
 	public String getVersion() {
-		return "1.5.1-1";
+		return "1.5.1-2";
 	}
 
 	@Override
