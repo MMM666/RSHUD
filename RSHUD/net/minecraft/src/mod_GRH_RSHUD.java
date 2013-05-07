@@ -47,11 +47,6 @@ public class mod_GRH_RSHUD extends BaseMod {
 
 	
 	@Override
-	public String getVersion() {
-		return "1.5.1-1";
-	}
-
-	@Override
 	public String getName() {
 		return "RSHUD";
 	}
@@ -63,7 +58,15 @@ public class mod_GRH_RSHUD extends BaseMod {
 	}
 	
 	@Override
+	public String getVersion() {
+		return "1.5.2-1";
+	}
+
+	@Override
 	public void load() {
+		// MMMLibのRevisionチェック
+		MMM_Helper.checkRevision("1");
+		
 		// ゲーム起動後の設定用フック
 		if (replaceGuiIngame) {
 			ModLoader.setInGUIHook(this, true, false);

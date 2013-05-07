@@ -1,4 +1,4 @@
-マインクラフトさんにナニカスルMOD RSHUD用プラグイン ACV風味1.5.1 Rev1
+マインクラフトさんにナニカスルMOD RSHUD用プラグイン ACV風味1.5.2 Rev1
 
 
 RSHUDでACV風味のHUDを追加するプラグインです。
@@ -13,7 +13,7 @@ RSHUDでACV風味のHUDを追加するプラグインです。
 
 使い方
 	・要RSHUD。
-	・MMMLibが前提MODになっているので、忘れずに入れておいて下さい。
+	・要MMMLib。
 	・%appdata%/.mincraft/mods/にZIPのまま放りこめば動くはずです。
 	・%appdata%/.mincraft/config/mod_RSHUD_ACV.cfgが設定ファイルです、適当にどうぞ。
 
@@ -47,11 +47,12 @@ RSHUDでACV風味のHUDを追加するプラグインです。
 
 
 変更点
+	20130507.1	1.5.2 Rev1 バージョンアップ
+
+
+
+
 	20130403.1	1.5.1 Rev1 バージョンアップ
-
-
-
-
 	20130116.1	1.4.7 Rev1 バージョンアップ
 	20121228.1	1.4.6 Rev2 修正
 				Forge環境でRECONが使えないのを修正。

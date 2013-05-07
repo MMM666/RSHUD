@@ -36,11 +36,6 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 
 	@Override
-	public String getVersion() {
-		return "1.5.1-2";
-	}
-
-	@Override
 	public String getName() {
 		return "RSHUD-ACV";
 	}
@@ -48,6 +43,11 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 	@Override
 	public String getPriorities() {
 		return MMM_Helper.isClient ? "required-after:mod_GRH_RSHUD" : "";
+	}
+
+	@Override
+	public String getVersion() {
+		return "1.5.2-1";
 	}
 
 	@Override

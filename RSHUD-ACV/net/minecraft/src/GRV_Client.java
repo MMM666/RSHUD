@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import static net.minecraft.src.mod_GRV_RSHUD_ACV.*;
+
 import java.util.Map;
 
 import net.minecraft.client.Minecraft;
@@ -46,27 +47,6 @@ public class GRV_Client {
 			}
 			catch (NoClassDefFoundError e) {
 				System.out.print("not Found RSHUD.");
-			}
-		}
-		
-		// RECON
-		if (itemIDRECON > 0) {
-			itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon");
-			ModLoader.addName(itemRECON, "RECON");
-//	        ModLoader.addName(itemRECON, "ja_JP", "íTç∏ã@");
-			ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
-				"E", 
-				"R", 
-				"I", 
-				Character.valueOf('E'), Item.spiderEye,
-				Character.valueOf('I'), Item.ingotIron,
-				Character.valueOf('R'), Item.redstone
-			});
-			uniqueRECON = MMM_Helper.getNextEntityID(false);
-			classRECON = MMM_Helper.getForgeClass(pMod, "GRV_EntityRECON");
-			if (classRECON != null) {
-				ModLoader.registerEntityID(classRECON, "RECON", uniqueRECON);
-				ModLoader.addEntityTracker(pMod, classRECON, uniqueRECON, 80, 10, true);
 			}
 		}
 	}
