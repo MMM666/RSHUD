@@ -47,7 +47,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.5.2-2";
+		return "1.5.2-3";
 	}
 
 	@Override

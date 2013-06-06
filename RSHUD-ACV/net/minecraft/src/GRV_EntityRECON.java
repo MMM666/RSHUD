@@ -112,7 +112,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 		// プレーヤーのレベルに応じて起動個数を決定
 		if (thrower instanceof EntityPlayer) {
 			int lwakeCount = ((EntityPlayer)thrower).experienceLevel / 10;
-			List llist = worldObj.getLoadedEntityList();
+			List llist = worldObj.loadedEntityList;
 			if (llist != null) {
 				for (int li = 0; li < llist.size(); li++) {
 					Entity lentity = (Entity)llist.get(li);

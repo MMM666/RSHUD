@@ -775,7 +775,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 		}
 
 		// RECON
-		List llist1 = mc.theWorld.getLoadedEntityList();
+		List llist1 = mc.theWorld.loadedEntityList;
 		for (int li = 0; li < llist1.size(); li++) {
 			Entity lentity = (Entity) llist1.get(li);
 			if (lentity instanceof GRV_EntityRECON) {
