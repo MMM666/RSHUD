@@ -10,8 +10,6 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
-import net.minecraft.client.Minecraft;
-
 public class GRH_Data {
 
 	public static GRH_GuiRSHUDConfigure selectHUD = null;
@@ -32,7 +30,7 @@ public class GRH_Data {
 		Logger logger = ModLoader.getLogger();
 		Class class1 = basemod.getClass();
 		Properties properties = new Properties();
-		File cfgdir = new File(Minecraft.getMinecraftDir(), "/config/");
+		File cfgdir = new File(MMM_FileManager.minecraftDir, "/config/");
 		File file = new File(cfgdir, (new StringBuilder(String.valueOf(class1.getSimpleName()))).append(".cfg").toString());
 		if(file.exists() && file.canRead()) {
 			properties.load(new FileInputStream(file));

@@ -10,6 +10,8 @@ import org.lwjgl.opengl.GL11;
 
 public class GRH_GuiAmmoSelect extends GuiContainer {
 
+	protected static final ResourceLocation fguitex = new ResourceLocation("textures/gui/rshudcontainer.png");
+
 	protected float scrolleWeaponset;
 	protected float scrolleContainer;
 	private static InventoryBasic inventory1 = new InventoryBasic("tmpsel", false, 40);
@@ -237,7 +239,7 @@ public class GRH_GuiAmmoSelect extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture("/gui/rshudcontainer.png");
+		mc.func_110434_K().func_110577_a(fguitex);
 		int l = guiLeft;
 		int i1 = guiTop;
 		drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);

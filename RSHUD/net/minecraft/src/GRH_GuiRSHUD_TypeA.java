@@ -2,8 +2,6 @@ package net.minecraft.src;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
-
 import org.lwjgl.opengl.GL11;
 
 public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
@@ -392,10 +390,11 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 
 		// èÛë‘ï\é¶
 		txtcolor = ColorInt_Normal;
-		if (mcpl.health < 9) {
+		float lhelth = mcpl.func_110143_aJ();
+		if (lhelth < 9F) {
 			// HP Low
-			s = mcpl.health < 5 ? "ALERT HEALTH" : "WARN HEALTH";
-			txtcolor = mcpl.health < 5 ? ColorInt_Alert : ColorInt_Warning;
+			s = lhelth < 5F ? "ALERT HEALTH" : "WARN HEALTH";
+			txtcolor = lhelth < 5F ? ColorInt_Alert : ColorInt_Warning;
 			mc.fontRenderer.drawString(s,
 					(int) xcenter - mc.fontRenderer.getStringWidth(s) / 2,
 					(int) ycenter - 80, txtcolor);
@@ -403,7 +402,7 @@ public class GRH_GuiRSHUD_TypeA extends GRH_GuiRSHUDConfigure {
 		if (mcpl.foodStats.getFoodLevel() < 7) {
 			// FOOD Low
 			s = "ALERT FOOD";
-			txtcolor = mcpl.health < 5 ? ColorInt_Alert : ColorInt_Warning;
+			txtcolor = lhelth < 5F ? ColorInt_Alert : ColorInt_Warning;
 			mc.fontRenderer.drawString(s,
 					(int) xcenter - mc.fontRenderer.getStringWidth(s) / 2,
 					(int) ycenter - 70, txtcolor);

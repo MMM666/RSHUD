@@ -3,10 +3,6 @@ package net.minecraft.src;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
-import org.lwjgl.input.Keyboard;
-
-import net.minecraft.client.Minecraft;
-
 public class mod_GRV_RSHUD_ACV extends BaseMod {
 	
 	@MLProp(info="Normal Color.")
@@ -47,13 +43,13 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.5.2-3";
+		return "1.6.1-1";
 	}
 
 	@Override
 	public void load() {
 		// MMMLibのRevisionチェック
-		MMM_Helper.checkRevision("2");
+		MMM_Helper.checkRevision("1");
 		
 		if (MMM_Helper.isClient) {
 			GRV_Client.load(this);
@@ -61,7 +57,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 		
 		// RECON
 		if (itemIDRECON > 0) {
-			itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon");
+			itemRECON = (new GRV_ItemRECON(itemIDRECON - 256)).setUnlocalizedName("recon").func_111206_d("recon");
 			ModLoader.addName(itemRECON, "RECON");
 //	        ModLoader.addName(itemRECON, "ja_JP", "探査機");
 			ModLoader.addRecipe(new ItemStack(itemRECON, 8), new Object[] {
@@ -111,7 +107,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public Packet23VehicleSpawn getSpawnPacket(Entity var1, int var2) {
-		EntityLiving lthrower = ((GRV_EntityRECON)var1).getThrower();
+		EntityLivingBase lthrower = ((GRV_EntityRECON)var1).getThrower();
 		return new GRV_PacketRECONSpawn(var1, 0, lthrower == null ? 0 : lthrower.entityId);
 	}
 

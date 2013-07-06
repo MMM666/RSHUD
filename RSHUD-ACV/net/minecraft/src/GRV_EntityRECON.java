@@ -22,7 +22,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 	public int index;
 	private int countEnemy;
 	private int countOther;
-	public EntityLiving thrower;
+	public EntityLivingBase thrower;
 
 	
 	
@@ -30,7 +30,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 		super(par1World);
 	}
 
-	public GRV_EntityRECON(World par1World, EntityLiving par2EntityLiving) {
+	public GRV_EntityRECON(World par1World, EntityLivingBase par2EntityLiving) {
 		super(par1World, par2EntityLiving);
 		thrower = par2EntityLiving;
 	}
@@ -163,7 +163,7 @@ public class GRV_EntityRECON extends EntityThrowable {
 				// —LŒø”ÍˆÍ“à‚ÌMOB‚ðŽæ“¾
 				countOther = 0;
 				countEnemy = 0;
-				List llist1 = worldObj.getEntitiesWithinAABB(EntityLiving.class, boundingBox.expand(8D, 8D, 8D));
+				List llist1 = worldObj.getEntitiesWithinAABB(EntityLivingBase.class, boundingBox.expand(8D, 8D, 8D));
 				if (llist1 != null) {
 					Iterator literator1 = llist1.iterator();
 					while (literator1.hasNext()) {

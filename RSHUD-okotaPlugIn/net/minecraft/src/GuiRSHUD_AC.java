@@ -3,8 +3,7 @@
 package net.minecraft.src;
 
 import java.util.List;
-import java.util.Map;
-import net.minecraft.client.Minecraft;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiRSHUD_AC extends GRH_GuiRSHUDConfigure {
@@ -467,16 +466,16 @@ public class GuiRSHUD_AC extends GRH_GuiRSHUDConfigure {
 				minecraft.fontRenderer.drawString(s19, (int) d - minecraft.fontRenderer.getStringWidth(s19) / 2, (int) d1 - 60, ColorInt_Alert);
 			}
 
-			if (((EntityPlayer) (entityplayersp)).health < 9) {
+			float lhealth = entityplayersp.func_110143_aJ();
+			if (lhealth < 9F) {
 				String s20 = "ALEART GCS DOWN!";
-				int j6 = ((EntityPlayer) (entityplayersp)).health < 5 ? ColorInt_Alert : ColorInt_Warning;
+				int j6 = lhealth < 5F ? ColorInt_Alert : ColorInt_Warning;
 				minecraft.fontRenderer.drawString(s20, (int) d - minecraft.fontRenderer.getStringWidth(s20) / 2, (int) d1 - 80, j6);
 			}
 
 			if (((EntityPlayer) (entityplayersp)).foodStats.getFoodLevel() < 7) {
 				String s21 = "ALEART LESS FUEL";
-				int k6 = ((EntityPlayer) (entityplayersp)).health < 5 ? ColorInt_Alert
-						: ColorInt_Warning;
+				int k6 = lhealth < 5F ? ColorInt_Alert : ColorInt_Warning;
 				minecraft.fontRenderer.drawString(s21, (int) d - minecraft.fontRenderer.getStringWidth(s21) / 2, (int) d1 - 70, k6);
 			}
 		}

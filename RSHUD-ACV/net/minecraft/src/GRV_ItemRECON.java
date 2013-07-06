@@ -2,8 +2,6 @@ package net.minecraft.src;
 
 import java.lang.reflect.Constructor;
 
-import net.minecraft.client.Minecraft;
-
 public class GRV_ItemRECON extends ItemSnowball {
 
 	

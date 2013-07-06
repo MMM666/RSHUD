@@ -1,23 +1,15 @@
 package net.minecraft.src;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-
-import net.minecraft.client.Minecraft;
 
 public class GRH_GuiIngameRSHUD extends GuiIngame {
 
 	private Minecraft mc;
-	
+
 	public GRH_GuiIngameRSHUD(Minecraft minecraft) {
 		super(minecraft);
 		mc = minecraft;
 	}
-	
+
 	@Override
 	public void renderGameOverlay(float f, boolean flag, int i, int j) {
 		super.renderGameOverlay(f, flag, i, j);
@@ -30,7 +22,5 @@ public class GRH_GuiIngameRSHUD extends GuiIngame {
 			GRH_Data.selectHUD.renderRSHUD(mc, k, l);
 		}
 	}
-	
-	
 
 }

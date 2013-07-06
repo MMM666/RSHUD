@@ -1,20 +1,7 @@
 package net.minecraft.src;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.TreeMap;
-import java.util.logging.Logger;
-
-import net.minecraft.client.Minecraft;
 
 public class mod_GRH_RSHUD extends BaseMod {
 
@@ -59,7 +46,7 @@ public class mod_GRH_RSHUD extends BaseMod {
 	
 	@Override
 	public String getVersion() {
-		return "1.5.2-1";
+		return "1.6.1-1";
 	}
 
 	@Override

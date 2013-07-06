@@ -2,8 +2,6 @@ package net.minecraft.src;
 
 import java.nio.FloatBuffer;
 
-import net.minecraft.client.Minecraft;
-
 import org.lwjgl.BufferUtils;
 
 public class GRV_EntityMARKER extends Entity {
@@ -16,7 +14,7 @@ public class GRV_EntityMARKER extends Entity {
 	
 	public GRV_EntityMARKER(World world) {
 		super(world);
-		setSize(0.1F, 0.1F);		
+		setSize(0.1F, 0.1F);
 	}
 
 	@Override
@@ -30,7 +28,7 @@ public class GRV_EntityMARKER extends Entity {
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 	}
-	
+
 	@Override
 	public void onUpdate() {
 		Minecraft mc = ModLoader.getMinecraftInstance();
@@ -52,5 +50,5 @@ public class GRV_EntityMARKER extends Entity {
 		
 		GRV_GuiRSHUD_ACV.clearRECONSensing();
 	}
-	
+
 }

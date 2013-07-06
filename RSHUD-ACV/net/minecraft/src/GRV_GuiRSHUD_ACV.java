@@ -9,9 +9,9 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import net.minecraft.client.Minecraft;
-
 public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
+
+	protected static final ResourceLocation fguitex = new ResourceLocation("textures/gui/rshud_acvstatus.png");
 
 	private static final int ma_weapon = 0;
 	private static final int ma_ammo = 1;
@@ -395,9 +395,9 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 
 		// AP
 		float valAP = Math.min(
-				(float) mcpl.health + (float) valFoodTimer / 80F,
-				(float) mcpl.getMaxHealth())
-				/ (float) mcpl.getMaxHealth();
+				mcpl.func_110143_aJ() + (float) valFoodTimer / 80F,
+				mcpl.func_110138_aP())
+				/ mcpl.func_110138_aP();
 		int colAP = getTextColor(valAP, 0.4F, 0.2F);
 		// ’l
 		GL11.glLineWidth(1F);
@@ -1032,7 +1032,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 				// mc.fontRenderer.drawString(s, 56, 6, lc);
 
 				// ˜g
-				mc.renderEngine.bindTexture("/gui/rshud_acvstatus.png");
+				mc.func_110434_K().func_110577_a(fguitex);
 				drawTexturedModalRect(0, 0, 0, potion.isBadEffect() ? 0 : 48,
 						128, 45);
 				GL11.glPopMatrix();
@@ -1063,7 +1063,7 @@ public class GRV_GuiRSHUD_ACV extends GRH_GuiRSHUDConfigure {
 							mc.fontRenderer.drawString(s, 64 - widMes, 19,
 									getColorAmp(ColorInt_Normal, 0.8F));
 							// ˜g
-							mc.renderEngine.bindTexture("/gui/rshud_acvstatus.png");
+							mc.func_110434_K().func_110577_a(fguitex);
 							drawTexturedModalRect(0, 0, 0, 48, 128, 45);
 							GL11.glPopMatrix();
 						}

@@ -3,8 +3,7 @@
 package net.minecraft.src;
 
 import java.util.List;
-import java.util.Map;
-import net.minecraft.client.Minecraft;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiRSHUD_TypeB extends GRH_GuiRSHUDConfigure {
@@ -535,21 +534,20 @@ public class GuiRSHUD_TypeB extends GRH_GuiRSHUDConfigure {
 
 			int l2 = ColorInt_Normal;
 
-			if (((EntityPlayer) (entityplayersp)).health < 9) {
+			float lhelth = entityplayersp.func_110143_aJ();
+			if (lhelth < 9F) {
 				String s21 = "ALEART HEALTH";
-				int k7 = ((EntityPlayer) (entityplayersp)).health >= 5 ? ColorInt_Warning
-						: ColorInt_Alert;
-				minecraft.fontRenderer.drawString(s21, (int) d
-						- minecraft.fontRenderer.getStringWidth(s21) / 2,
+				int k7 = lhelth >= 5F ? ColorInt_Warning : ColorInt_Alert;
+				minecraft.fontRenderer.drawString(s21,
+						(int) d - minecraft.fontRenderer.getStringWidth(s21) / 2,
 						(int) d1 - 80, k7);
 			}
 
 			if (((EntityPlayer) (entityplayersp)).foodStats.getFoodLevel() < 7) {
 				String s22 = "ALEART FOOD";
-				int l7 = ((EntityPlayer) (entityplayersp)).health >= 5 ? ColorInt_Warning
-						: ColorInt_Alert;
-				minecraft.fontRenderer.drawString(s22, (int) d
-						- minecraft.fontRenderer.getStringWidth(s22) / 2,
+				int l7 = lhelth >= 5F ? ColorInt_Warning : ColorInt_Alert;
+				minecraft.fontRenderer.drawString(s22,
+						(int) d - minecraft.fontRenderer.getStringWidth(s22) / 2,
 						(int) d1 - 70, l7);
 			}
 		}

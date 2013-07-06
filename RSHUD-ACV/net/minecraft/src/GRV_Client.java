@@ -4,8 +4,6 @@ import static net.minecraft.src.mod_GRV_RSHUD_ACV.*;
 
 import java.util.Map;
 
-import net.minecraft.client.Minecraft;
-
 import org.lwjgl.input.Keyboard;
 
 public class GRV_Client {

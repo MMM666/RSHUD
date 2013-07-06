@@ -10,19 +10,18 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.util.glu.GLU;
 
 public class GRV_RenderMARKER extends Render {
-	
+
 	// 変換行列
 	public static FloatBuffer matModel = BufferUtils.createFloatBuffer(16);
 	public static FloatBuffer matProjection = BufferUtils.createFloatBuffer(16);
 	public static IntBuffer matViewport = BufferUtils.createIntBuffer(16);
 
-	
+
 	@Override
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1) {
 		renderRoute((GRV_EntityMARKER)entity, d, d1, d2, f, f1);
 	}
 
-	
 	public void renderRoute(GRV_EntityMARKER entity, double d, double d1, double d2, float f, float f1) {
 		if (entity.playerEntity == null) return;
 		
@@ -48,8 +47,14 @@ public class GRV_RenderMARKER extends Render {
 			entity.markerPos[i] = posMarker;
 		}
 	}
-	
+
 	@Override
 	public void doRenderShadowAndFire(Entity entity, double d, double d1, double d2, float f, float f1) {
+	}
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity var1) {
+		// テクスチャは使わない
+		return null;
 	}
 }
