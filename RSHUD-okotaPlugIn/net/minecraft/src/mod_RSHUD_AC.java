@@ -41,7 +41,7 @@ public class mod_RSHUD_AC extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.5.2-1";
+		return "1.6.1-1";
 	}
 
 	@Override
