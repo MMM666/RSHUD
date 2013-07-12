@@ -43,7 +43,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 
 	@Override
 	public String getVersion() {
-		return "1.6.1-1";
+		return "1.6.2-1";
 	}
 
 	@Override
@@ -68,12 +68,9 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 				Character.valueOf('I'), Item.ingotIron,
 				Character.valueOf('R'), Item.redstone
 			});
-//			uniqueRECON = MMM_Helper.getNextEntityID(false);
 			classRECON = MMM_Helper.getForgeClass(this, "GRV_EntityRECON");
 			if (classRECON != null) {
 				MMM_Helper.registerEntity(classRECON, "RECON", 0, this, 80, 10, false);
-//				ModLoader.registerEntityID(classRECON, "RECON", uniqueRECON);
-//				ModLoader.addEntityTracker(this, classRECON, uniqueRECON, 80, 10, true);
 			}
 		}
 	}
@@ -87,7 +84,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 	public void addRenderer(Map map) {
 		GRV_Client.addRenderer(map);
 	}
-
+/*
 	@Override
 	public Entity spawnEntity(int var1, World var2, double var3, double var5, double var7) {
 		// Modloaderâ∫Ç≈ÇÕì∆é©Ç…ê∂ê¨Ç∑ÇÈÇÃÇ≈óvÇÁÇ»Ç¢ÅB
@@ -104,7 +101,7 @@ public class mod_GRV_RSHUD_ACV extends BaseMod {
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public Packet23VehicleSpawn getSpawnPacket(Entity var1, int var2) {
 		EntityLivingBase lthrower = ((GRV_EntityRECON)var1).getThrower();

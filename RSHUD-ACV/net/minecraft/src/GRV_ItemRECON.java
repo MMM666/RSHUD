@@ -21,18 +21,13 @@ public class GRV_ItemRECON extends ItemSnowball {
 		
 		if (!par2World.isRemote) {
 			try {
-				Constructor<GRV_EntityRECON> lconstructor = mod_GRV_RSHUD_ACV.classRECON.getConstructor(World.class, EntityLiving.class);
+				Constructor<GRV_EntityRECON> lconstructor = mod_GRV_RSHUD_ACV.classRECON.getConstructor(World.class, EntityLivingBase.class);
 				par2World.spawnEntityInWorld(lconstructor.newInstance(par2World, par3EntityPlayer));
 			} catch (Exception e) {
 			}
 		}
 		
 		return par1ItemStack;
-	}
-
-	@Override
-	public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
-		return 0xff888888;
 	}
 
 }

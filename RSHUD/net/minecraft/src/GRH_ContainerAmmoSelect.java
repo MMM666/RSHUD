@@ -147,7 +147,7 @@ public class GRH_ContainerAmmoSelect extends ContainerCreative {
 	}
 
 	@Override
-	public boolean func_94531_b(Slot par1Slot) {
+	public boolean canDragIntoSlot(Slot par1Slot) {
 		return false;
 	}
 

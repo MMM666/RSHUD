@@ -6,13 +6,13 @@ import com.google.common.io.ByteArrayDataOutput;
 import cpw.mods.fml.common.registry.*;
 
 
-public class GRV_EntityRECON_Forge extends GRV_EntityRECON implements IEntityAdditionalSpawnData {
+public class GRV_EntityRECON_Forge extends GRV_EntityRECON implements IThrowableEntity, IEntityAdditionalSpawnData {
 
 	public GRV_EntityRECON_Forge(World par1World) {
 		super(par1World);
 	}
 
-	public GRV_EntityRECON_Forge(World par1World, EntityLiving par2EntityLiving) {
+	public GRV_EntityRECON_Forge(World par1World, EntityLivingBase par2EntityLiving) {
 		super(par1World, par2EntityLiving);
 	}
 
@@ -31,10 +31,16 @@ public class GRV_EntityRECON_Forge extends GRV_EntityRECON implements IEntityAdd
 		int lthrower = data.readInt();
 		if (lthrower != 0) {
 			Entity lentity = worldObj.getEntityByID(lthrower);
-			if (lentity instanceof EntityLiving) {
-				thrower = (EntityLiving)lentity;
+			if (lentity instanceof EntityLivingBase) {
+				thrower = (EntityLivingBase)lentity;
 			}
 		}
+	}
+
+	@Override
+	public void setThrower(Entity entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
